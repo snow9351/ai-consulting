@@ -2,20 +2,17 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 
 export default [
   index("routes/home.tsx"),
-  route("about", "routes/about.tsx"),
-  route("services", "routes/services.tsx"),
+
+  // HUMNOVA platform. Functionality lands in Phases 2–5; these routes exist so
+  // the navigation resolves and visitors get an honest status instead of a 404
+  // or a mocked-up page.
+  route("opportunities", "routes/platform/opportunities.tsx"),
+  route("employers", "routes/platform/employers.tsx"),
+  route("join", "routes/platform/join.tsx"),
+
   route("contact", "routes/contact.tsx"),
-  route("countries", "routes/countries/layout.tsx", [
-    index("routes/index.tsx"),
-    // Remove the dynamic route and add static routes
-    route("us", "routes/countries/us.tsx"),
-    route("canada-visit-visa", "routes/countries/canada-visit-visa.tsx"),
-    route("uk-visit-visa", "routes/countries/uk-visit-visa.tsx"),
-    route("australia-visit-visa", "routes/countries/australia-visit-visa.tsx"),
-    route("us-visit-visa", "routes/countries/usa-visit-visa.tsx"),
-    route("ie-visit-visa", "routes/countries/ie-visit-visa.tsx"),
-    route("sc-visit-visa", "routes/countries/sc-visit-visa.tsx"),
-    // route("ca", "routes/countries/ca.tsx"),
-    // Add more country routes as needed
-  ]),
+
+  route("guidelines", "routes/legal/guidelines.tsx"),
+  route("privacy", "routes/legal/privacy.tsx"),
+  route("terms", "routes/legal/terms.tsx"),
 ] satisfies RouteConfig;

@@ -1,13 +1,35 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import { Hero } from "~/components/home/Hero";
+import { Mission } from "~/components/home/Mission";
+import { HowItWorks } from "~/components/home/HowItWorks";
+import { WhyChoose } from "~/components/home/WhyChoose";
+import { WorkWithTeam } from "~/components/home/WorkWithTeam";
+import { ForEmployers } from "~/components/home/ForEmployers";
+import { Values } from "~/components/home/Values";
+import { FinalCta } from "~/components/home/FinalCta";
+import { SITE } from "~/lib/site";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "GQ Consultants" },
-    { name: "description", content: "Welcome to GQ Consultants" },
+    { title: `${SITE.name} — ${SITE.primaryMessage}` },
+    { name: "description", content: SITE.description },
+    { property: "og:title", content: `${SITE.name} — ${SITE.primaryMessage}` },
+    { property: "og:description", content: SITE.description },
+    { property: "og:type", content: "website" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return (
+    <>
+      <Hero />
+      <Mission />
+      <HowItWorks />
+      <WhyChoose />
+      <WorkWithTeam />
+      <ForEmployers />
+      <Values />
+      <FinalCta />
+    </>
+  );
 }
