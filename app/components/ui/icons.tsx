@@ -184,3 +184,25 @@ export const ShieldSolid = ({ className = "h-5 w-5" }: IconProps) => (
     <path d="M12 12.5v2.8" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
   </svg>
 );
+
+export const Bolt = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M13.5 3 5.5 13.5h6l-1 7.5 8-10.5h-6Z" />
+  </Svg>
+);
+
+/** Solid rocket — the "next opportunity" mark. */
+export const RocketSolid = ({ className = "h-5 w-5" }: IconProps) => (
+  <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+    <path
+      fill="currentColor"
+      d="M20.6 3.4c-3.9-.4-7.6 1.1-10.2 4L8.7 9.2l-3.4-.4a1 1 0 0 0-.8.3L2.6 11a.6.6 0 0 0 .3 1l3.6 1 4.5 4.5 1 3.6a.6.6 0 0 0 1 .3l1.9-1.9a1 1 0 0 0 .3-.8l-.4-3.4 1.8-1.7c2.9-2.6 4.4-6.3 4-10.2Z"
+    />
+    <circle cx="15.3" cy="8.7" r="1.9" fill="#fff" />
+    <path
+      fill="currentColor"
+      d="M6.3 15.6c-1.4.2-2.6 1.4-2.8 3.4l-.2 1.7 1.7-.2c2-.2 3.2-1.4 3.4-2.8Z"
+      opacity="0.7"
+    />
+  </svg>
+);

@@ -8,7 +8,7 @@ export interface Step {
   number: string;
   title: string;
   description: string;
-  icon: "userPlus" | "sparkle" | "globe" | "handshake";
+  icon: "userPlus" | "code" | "briefcase" | "growth";
 }
 
 export const STEPS: Step[] = [
@@ -24,21 +24,21 @@ export const STEPS: Step[] = [
     title: "Build your profile",
     description:
       "Describe your skills, languages, availability, and what you want to work on. Experience counts, a diploma is not required.",
-    icon: "sparkle",
+    icon: "code",
   },
   {
     number: "03",
     title: "Discover opportunities",
     description:
       "Browse remote roles and projects from people and businesses in other countries, with requirements stated upfront.",
-    icon: "globe",
+    icon: "briefcase",
   },
   {
     number: "04",
     title: "Connect and grow",
     description:
       "Apply, message directly, and build a track record that travels with you to the next opportunity.",
-    icon: "handshake",
+    icon: "growth",
   },
 ];
 
