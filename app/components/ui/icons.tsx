@@ -129,3 +129,34 @@ export const Language = (p: IconProps) => (
     <path d="M3.5 6h8M7.5 4v2M9.8 6c0 3.6-2.5 6.8-6.3 8M5.5 9.5c1 2 2.9 3.6 5.3 4.4M12.5 20l4-9.5 4 9.5M14 16.5h5" />
   </Svg>
 );
+
+export const Search = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="10.5" cy="10.5" r="6.5" />
+    <path d="m15.5 15.5 5 5" />
+  </Svg>
+);
+
+/** A coin stack with a "no" mark — used for "no fees". */
+export const NoFee = (p: IconProps) => (
+  <Svg {...p}>
+    <ellipse cx="9" cy="6" rx="5.5" ry="2.2" />
+    <path d="M3.5 6v4c0 1.2 2.5 2.2 5.5 2.2M3.5 10v4c0 1.2 2.5 2.2 5.5 2.2M14.5 6v3" />
+    <circle cx="16.5" cy="16" r="4.5" />
+    <path d="m13.3 19.2 6.4-6.4" />
+  </Svg>
+);
+
+export const Document = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8Z" />
+    <path d="M14 3.5V8h4.5M9 12h6M9 15.5h6" />
+  </Svg>
+);
+
+export const GraduationCap = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="m12 4.5 10 4.5-10 4.5L2 9Z" />
+    <path d="M6 11v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V11M22 9v5" />
+  </Svg>
+);
