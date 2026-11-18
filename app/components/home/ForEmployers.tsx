@@ -79,7 +79,8 @@ export function ForEmployers() {
             </Reveal>
           </div>
 
-          <Reveal delay={120}>
+          {/* Vertically centred against the taller copy column. */}
+          <Reveal delay={120} className="lg:self-center">
             <div className="rounded-4xl border border-ink-100 bg-white p-8 shadow-card sm:p-10">
               <h3 className="text-xl font-semibold text-ink-900">
                 What we expect from employers

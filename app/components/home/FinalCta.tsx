@@ -77,7 +77,7 @@ export function FinalCta() {
     <section className="bg-white py-16 sm:py-24">
       <Container width="wide">
         <Reveal>
-          <div className="relative overflow-hidden rounded-[2.5rem] border border-white bg-gradient-to-br from-[#e9f0fe] via-[#f7f9ff] to-[#e6eefd] px-6 py-14 text-center shadow-[0_30px_70px_-34px_rgb(42_88_208/0.45)] sm:px-12 sm:py-16">
+          <div className="relative overflow-hidden rounded-[2.5rem] border border-white bg-gradient-to-br from-[#e9f0fe] via-[#f7f9ff] to-[#e6eefd] px-6 py-14 text-center shadow-[0_30px_70px_-34px_rgb(42_88_208/0.45)] transition-[transform,box-shadow] duration-500 ease-out hover:scale-[1.02] hover:shadow-[0_40px_80px_-30px_rgb(42_88_208/0.55)] sm:px-12 sm:py-16">
             {/* Soft shapes in the corners. */}
             <div aria-hidden="true" className="pointer-events-none absolute inset-0">
               <div className="absolute -left-24 -top-24 h-80 w-80 rounded-full bg-[radial-gradient(circle,rgb(196_214_252/0.75)_0%,transparent_70%)]" />

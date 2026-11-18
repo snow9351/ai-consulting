@@ -141,7 +141,7 @@ export function WorkWithTeam() {
             panel. They stack on narrow screens. */}
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-0">
           {/* ---- Left half: join the team ----------------------------- */}
-          <div className="relative overflow-hidden rounded-[2rem] bg-[#f2f5fe] px-6 pb-14 pt-16 shadow-[0_30px_70px_-40px_rgb(10_20_60/0.45)] sm:px-10 lg:mb-24 lg:rounded-r-none lg:px-12 lg:pb-16 lg:pt-20">
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#f2f5fe] transition-[transform,box-shadow] duration-500 ease-out hover:z-10 hover:scale-[1.02] hover:shadow-[0_40px_80px_-36px_rgb(10_20_60/0.5)] px-6 pb-14 pt-16 shadow-[0_30px_70px_-40px_rgb(10_20_60/0.45)] sm:px-10 lg:mb-24 lg:rounded-r-none lg:px-12 lg:pb-16 lg:pt-20">
             <GridMark
               segments={LEFT_MARK}
               className="pointer-events-none absolute -left-10 top-64 hidden h-40 text-brand-500 sm:block xl:-left-6 xl:h-44"
@@ -217,7 +217,7 @@ export function WorkWithTeam() {
 
           {/* ---- Right half: why we're great to work with ------------- */}
           {/* Sits a little lower than the light half, so the two are staggered. */}
-          <div className="rounded-[2rem] bg-[#071233] px-6 pb-14 pt-16 flex flex-col text-white shadow-[0_30px_70px_-40px_rgb(10_20_60/0.6)] sm:px-10 lg:mt-24 lg:rounded-l-none lg:px-12 lg:pb-16 lg:pt-20">
+          <div className="relative rounded-[2rem] bg-[#071233] transition-[transform,box-shadow] duration-500 ease-out hover:z-10 hover:scale-[1.02] hover:shadow-[0_40px_80px_-36px_rgb(10_20_60/0.7)] px-6 pb-14 pt-16 flex flex-col text-white shadow-[0_30px_70px_-40px_rgb(10_20_60/0.6)] sm:px-10 lg:mt-24 lg:rounded-l-none lg:px-12 lg:pb-16 lg:pt-20">
             <div>
               <Reveal>
                 <h3 className="text-balance text-3xl font-medium leading-[1.2] tracking-[-0.02em] xl:text-[2.25rem]">

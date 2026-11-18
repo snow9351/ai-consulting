@@ -7,7 +7,7 @@
 export const SITE = {
   name: "HUMNOVA",
   /** What the name is built from. Surfaced in the footer, under the logo. */
-  nameOrigin: "Humanity + Nova",
+  // nameOrigin: "",
   primaryMessage: "Opportunity has no borders.",
   secondaryMessage: "Your financial situation should never define your future.",
   philosophy: "Human beings create money. Money should serve human beings.",

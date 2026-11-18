@@ -19,7 +19,7 @@ export function Logo({ tone = "light", className = "" }: LogoProps) {
     >
       <svg
         viewBox="0 0 32 32"
-        className="h-8 w-8 shrink-0"
+        className="h-8 w-8 shrink-0 transition-transform duration-500 ease-out group-hover:rotate-[20deg] group-hover:scale-110"
         aria-hidden="true"
         focusable="false"
       >

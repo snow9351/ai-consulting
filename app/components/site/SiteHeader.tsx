@@ -59,7 +59,7 @@ export function SiteHeader() {
             <li key={item.label}>
               <Link
                 to={item.to}
-                className="rounded-full px-3.5 py-2 text-[0.9375rem] font-medium text-ink-600 transition-colors hover:bg-ink-50 hover:text-ink-900"
+                className="relative inline-flex rounded-full px-3.5 py-2 text-[0.9375rem] font-medium text-ink-600 transition-[color,background-color,transform] duration-300 after:absolute after:inset-x-3.5 after:bottom-1 after:h-0.5 after:origin-center after:scale-x-0 after:rounded-full after:bg-brand-500 after:transition-transform after:duration-300 hover:-translate-y-px hover:bg-brand-50 hover:text-brand-600 hover:after:scale-x-100"
               >
                 {item.label}
               </Link>
@@ -68,10 +68,10 @@ export function SiteHeader() {
         </ul>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button to="/join" variant="ghost" size="sm">
+          <Button to="/join" variant="ghost" size="sm" className="hover:scale-105">
             Sign In
           </Button>
-          <Button to="/join" variant="primary" size="sm">
+          <Button to="/join" variant="primary" size="sm" className="hover:scale-105">
             Join for Free
           </Button>
         </div>
