@@ -122,6 +122,155 @@
     transform-box: view-box;
     transform-origin: center;
   }
+
+  /*
+   * Hero sky — daylight on the left, deep space on the right.
+   *
+   * The gradient is drawn twice as wide as the section and its position
+   * drifts back and forth, so the dawn line slowly breathes in and out.
+   * These ambient loops deliberately sit outside the reduced-motion rule
+   * below, for the same reason GlobeVisual ignores it (see
+   * HONOUR_REDUCED_MOTION there): many Windows builds report "reduce" with
+   * animations simply switched off, and the hero would look dead. None of
+   * them move content or text — only colour and light behind it.
+   */
+  .hero-sky {
+    background-image: linear-gradient(
+      100deg,
+      #ffffff 0%,
+      #f3f7ff 30%,
+      #dde9ff 45%,
+      #6f9cf0 55%,
+      #1f4fb8 62%,
+      #0b2463 72%,
+      #06123a 85%,
+      #030a24 100%
+    );
+    /* 110% wide, drifting 0 → 100%: the dawn line travels ~10% of the
+       section and never crosses into the text column. */
+    background-size: 110% 100%;
+    animation: hero-sky 18s ease-in-out infinite alternate;
+  }
+
+  /* Stacked layout: the sky turns at the globe, not behind the copy. */
+  @media (max-width: 1023.98px) {
+    .hero-sky {
+      background-image: linear-gradient(180deg, #ffffff 0%, #eef4ff 100%);
+      animation: none;
+    }
+  }
+
+  .hero-glow {
+    animation: hero-glow 12s ease-in-out infinite alternate;
+  }
+
+  .hero-stars {
+    background-image:
+      radial-gradient(1.2px 1.2px at 12% 18%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 28% 72%, #fff 50%, transparent 51%),
+      radial-gradient(1.4px 1.4px at 44% 36%, #cfe0ff 50%, transparent 51%),
+      radial-gradient(1px 1px at 58% 84%, #fff 50%, transparent 51%),
+      radial-gradient(1.6px 1.6px at 66% 12%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 78% 52%, #cfe0ff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 88% 28%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 94% 76%, #fff 50%, transparent 51%),
+      radial-gradient(1px 1px at 36% 8%, #fff 50%, transparent 51%),
+      radial-gradient(1.2px 1.2px at 8% 60%, #cfe0ff 50%, transparent 51%);
+    background-size: 340px 300px;
+    animation: twinkle 5s ease-in-out infinite alternate;
+  }
+
+  .hero-stars-alt {
+    background-position: 170px 140px;
+    animation-delay: -2.5s;
+    animation-duration: 7s;
+  }
+
+  /* A tighter tile of the same dust, offset, for a denser background. */
+  .hero-stars-dense {
+    background-size: 170px 150px;
+    background-position: 60px 90px;
+    animation-delay: -1.2s;
+    animation-duration: 4s;
+  }
+
+  /* Tiny stars: fade only, so a few hundred stay cheap to animate. */
+  .hero-star-sm {
+    position: absolute;
+    width: var(--s, 1px);
+    height: var(--s, 1px);
+    border-radius: 9999px;
+    background: #fff;
+    box-shadow: 0 0 calc(var(--s, 1px) * 2.5) rgb(200 220 255 / 0.8);
+    opacity: 0.2;
+    animation: star-fade var(--d, 4s) ease-in-out var(--delay, 0s) infinite;
+  }
+
+  /*
+   * Individual blinking stars. Size, position, period and delay come from
+   * inline custom properties set in Hero.tsx, so each one keeps its own beat.
+   */
+  .hero-star {
+    position: absolute;
+    width: var(--s, 2px);
+    height: var(--s, 2px);
+    border-radius: 9999px;
+    background: radial-gradient(circle, #fff 35%, rgb(220 232 255 / 0.9) 70%);
+    box-shadow:
+      0 0 calc(var(--s, 2px) * 1.5) rgb(255 255 255 / 0.95),
+      0 0 calc(var(--s, 2px) * 4) rgb(170 205 255 / 0.75);
+    opacity: 0.3;
+    animation: star-blink var(--d, 3s) ease-in-out var(--delay, 0s) infinite;
+  }
+
+  /*
+   * Underline under "Bank Account." — loops: draws in left → right, holds,
+   * then erases from the opposite (right) end back to the left, rests, and
+   * draws again. The path has pathLength="1", so offsets run 1 → 0 → 1.
+   * (Dash gap of 2 keeps the hidden part fully hidden at either end.)
+   */
+  .hero-swoosh path {
+    stroke-dasharray: 1 2;
+    stroke-dashoffset: 1;
+    animation: swoosh 5s 0.6s ease-in-out infinite;
+  }
+
+  .hero-cta-glow {
+    animation: cta-glow 3.2s ease-in-out infinite;
+  }
+
+  @keyframes hero-sky {
+    from { background-position: 0% 50%; }
+    to { background-position: 100% 50%; }
+  }
+  @keyframes hero-glow {
+    0% { transform: translate3d(0, 0, 0) scale(1); opacity: 0.75; }
+    100% { transform: translate3d(-6%, 4%, 0) scale(1.12); opacity: 1; }
+  }
+  @keyframes twinkle {
+    from { opacity: 0.35; }
+    to { opacity: 1; }
+  }
+  @keyframes star-blink {
+    0%, 100% { opacity: 0.2; transform: scale(0.7); }
+    45% { opacity: 1; transform: scale(1.15); }
+    55% { opacity: 0.85; transform: scale(1); }
+  }
+  @keyframes star-fade {
+    0%, 100% { opacity: 0.15; }
+    50% { opacity: 0.95; }
+  }
+  @keyframes swoosh {
+    0% { stroke-dashoffset: 1; }      /* hidden */
+    26% { stroke-dashoffset: 0; }     /* drawn in, left → right */
+    62% { stroke-dashoffset: 0; }     /* hold */
+    88% { stroke-dashoffset: 1; }     /* erased, right → left */
+    100% { stroke-dashoffset: 1; }    /* rest */
+  }
+  @keyframes cta-glow {
+    0%, 100% { box-shadow: 0 10px 30px -8px rgb(42 88 208 / 0.55); }
+    50% { box-shadow: 0 12px 40px -6px rgb(53 106 230 / 0.85); }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

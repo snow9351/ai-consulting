@@ -160,3 +160,27 @@ export const GraduationCap = (p: IconProps) => (
     <path d="M6 11v4.5c0 1.4 2.7 3 6 3s6-1.6 6-3V11M22 9v5" />
   </Svg>
 );
+
+export const Compass = (p: IconProps) => (
+  <Svg {...p}>
+    <circle cx="12" cy="12" r="8.5" />
+    <path d="m15.5 8.5-2 5-5 2 2-5Z" />
+  </Svg>
+);
+
+/** Solid shield with a keyhole dot — the hero badge mark. */
+export const ShieldSolid = ({ className = "h-5 w-5" }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    className={className}
+    aria-hidden="true"
+    focusable="false"
+  >
+    <path
+      fill="currentColor"
+      d="M12 2.5 4.5 5.4v5.8c0 4.7 3.1 8.8 7.5 10.3 4.4-1.5 7.5-5.6 7.5-10.3V5.4Z"
+    />
+    <circle cx="12" cy="11" r="2.3" fill="#fff" />
+    <path d="M12 12.5v2.8" stroke="#fff" strokeWidth="1.6" strokeLinecap="round" />
+  </svg>
+);

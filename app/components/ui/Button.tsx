@@ -6,7 +6,8 @@ export type ButtonVariant =
   | "secondary"
   | "inverse"
   | "ghost"
-  | "ghostDark";
+  | "ghostDark"
+  | "outline";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps {
@@ -39,6 +40,9 @@ const VARIANTS: Record<ButtonVariant, string> = {
      override, because competing Tailwind utilities resolve by stylesheet
      order, not by the order they appear in the class attribute. */
   ghostDark: "text-ink-200 hover:bg-white/10 hover:text-white",
+  /* Brand-ringed, on a light or gradient backdrop. */
+  outline:
+    "bg-white/70 text-ink-900 ring-1 ring-inset ring-brand-300 backdrop-blur-sm hover:bg-white hover:ring-brand-500",
 };
 
 const SIZES: Record<ButtonSize, string> = {
