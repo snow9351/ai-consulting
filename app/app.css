@@ -245,6 +245,18 @@
     animation: cta-glow 3.2s ease-in-out infinite;
   }
 
+  /* Grid marks in "Work With Our Team": each bar's colour breathes gently,
+     staggered by an inline negative delay, so the pattern shimmers without
+     moving. Colour rather than opacity, so crossings never turn muddy. */
+  .work-grid-bar {
+    animation: grid-breathe 6.3s ease-in-out infinite;
+  }
+
+  @keyframes grid-breathe {
+    0%, 100% { fill: var(--color-brand-500); }
+    50% { fill: var(--color-brand-300); }
+  }
+
   @keyframes hero-sky {
     from { background-position: 0% 50%; }
     to { background-position: 100% 50%; }

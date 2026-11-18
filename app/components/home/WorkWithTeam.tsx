@@ -1,10 +1,9 @@
-import type { ComponentType } from "react";
+﻿import type { ComponentType } from "react";
 
 import { Button } from "~/components/ui/Button";
 import { Container } from "~/components/ui/Container";
 import { Reveal } from "~/components/ui/Reveal";
-import { SectionHeading } from "~/components/ui/SectionHeading";
-import { ArrowRight, Check, Globe, Shield, Users } from "~/components/ui/icons";
+import { ArrowRight, Globe, NoFee, Scale, Shield, Users } from "~/components/ui/icons";
 import type { FlagProps } from "~/components/ui/flags";
 import { FlagCA, FlagEU, FlagUK, FlagUS } from "~/components/ui/flags";
 import { SITE } from "~/lib/site";
@@ -41,116 +40,266 @@ const HOW_WE_WORK: Point[] = [
  * posters. The team here is the one offering the work, so these are promises
  * we are making about ourselves rather than conditions we police in others.
  */
-const NEVER: string[] = [
-  "Charge you to join, to be seen, or to be considered.",
-  "Ask you for a deposit, a fee, or money for equipment or training.",
-  "Rank you by your passport, your school, or who you happen to know.",
+const NEVER: Point[] = [
+  {
+    icon: NoFee,
+    title: "No fee to be seen",
+    body: "We will never charge you to join, to be seen, or to be considered.",
+  },
+  {
+    icon: Shield,
+    title: "No deposits, ever",
+    body: "We will never ask you for a deposit, a fee, or money for equipment or training.",
+  },
+  {
+    icon: Scale,
+    title: "No ranking by background",
+    body: "We will never rank you by your passport, your school, or who you happen to know.",
+  },
 ];
+
+/* ------------------------------------------------------------------------ */
+/* Grid marks — broken blue lines on a square grid, like a street plan seen  */
+/* from above. Each segment is [x1, y1, x2, y2] in grid units; segments are  */
+/* trimmed at their ends so every crossing shows a small gap.               */
+/* ------------------------------------------------------------------------ */
+
+type Segment = [number, number, number, number];
+
+const UNIT = 40;
+const BAR = 13;
+const GAP = 4;
+
+const LEFT_MARK: Segment[] = [
+  [2, 0.6, 2, 2], [4, 0, 4, 2], [0, 2, 2, 2], [2, 2, 4, 2], [4, 2, 5, 2],
+  [2, 2, 2, 4], [4, 2, 4, 4], [5, 2, 5, 4], [0, 4, 2, 4], [2, 4, 4, 4],
+  [4, 4, 5.4, 4], [5.4, 4, 5.4, 4.8], [2, 4, 2, 5.6], [4, 4, 4, 4.8],
+  [5, 4, 5, 5.6], [0, 5.6, 0.8, 5.6], [0.8, 5.6, 0.8, 6.6], [2, 5.6, 2, 6],
+];
+
+const RIGHT_MARK: Segment[] = [
+  [4, -1, 4, 1], [4, 1, 5, 1], [0, 2.4, 0, 3], [1.4, 1.4, 1.4, 2.6],
+  [0, 2.6, 1.4, 2.6], [1.4, 2.6, 2.8, 2.6], [2.8, 2.6, 4, 2.6], [4, 2.6, 5, 2.6],
+  [2.8, 1.8, 2.8, 2.6], [4, 1.4, 4, 2.6], [1.4, 2.6, 1.4, 4], [2.8, 2.6, 2.8, 4.4],
+  [4, 2.6, 4, 4], [0, 3.4, 0, 4.2], [1.4, 4, 2.8, 4], [2.8, 4, 4, 4], [4, 4, 5, 4],
+  [2.8, 4, 2.8, 5.6], [4, 4, 4, 4.8],
+];
+
+function GridMark({ segments, className = "" }: { segments: Segment[]; className?: string }) {
+  const xs = segments.flatMap(([a, , c]) => [a, c]);
+  const ys = segments.flatMap(([, b, , d]) => [b, d]);
+  const minX = Math.min(...xs);
+  const minY = Math.min(...ys);
+  const width = (Math.max(...xs) - minX) * UNIT + BAR;
+  const height = (Math.max(...ys) - minY) * UNIT + BAR;
+
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${height}`}
+      className={className}
+      aria-hidden="true"
+      focusable="false"
+    >
+      {/* Horizontals first, then verticals on top with a stroke in the band's
+          own colour, which cuts a clean gap wherever two bars cross. */}
+      {[...segments]
+        .map((s, i) => [s, i] as const)
+        .sort(([a], [b]) => Number(a[1] !== a[3]) - Number(b[1] !== b[3]))
+        .map(([[x1, y1, x2, y2], i]) => {
+        const horizontal = y1 === y2;
+        const left = (Math.min(x1, x2) - minX) * UNIT;
+        const top = (Math.min(y1, y2) - minY) * UNIT;
+        const length = (horizontal ? Math.abs(x2 - x1) : Math.abs(y2 - y1)) * UNIT;
+        return (
+          <rect
+            key={i}
+            className="work-grid-bar"
+            style={{ animationDelay: `${(i % 7) * -0.9}s` }}
+            x={horizontal ? left + GAP : left}
+            y={horizontal ? top : top + GAP}
+            width={horizontal ? Math.max(length - GAP * 2 + BAR, BAR) : BAR}
+            height={horizontal ? BAR : Math.max(length - GAP * 2 + BAR, BAR)}
+            rx="2"
+            fill="currentColor"
+            stroke={horizontal ? undefined : "#f2f5fe"}
+            strokeWidth={horizontal ? undefined : 7}
+            paintOrder="stroke"
+          />
+        );
+      })}
+    </svg>
+  );
+}
+
+/* ------------------------------------------------------------------------ */
 
 export function WorkWithTeam() {
   return (
-    <section id="work" className="bg-white py-20 sm:py-28">
+    <section id="work" className="relative overflow-hidden bg-white py-16 sm:py-24">
       <Container width="wide">
-        <SectionHeading
-          eyebrow="Work With Our Team"
-          title="Our team will give anyone the job from the following countries."
-        />
+        {/* Two halves side by side: a light "join" panel and a dark "why"
+            panel. They stack on narrow screens. */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-0">
+          {/* ---- Left half: join the team ----------------------------- */}
+          <div className="relative overflow-hidden rounded-[2rem] bg-[#f2f5fe] px-6 pb-14 pt-16 shadow-[0_30px_70px_-40px_rgb(10_20_60/0.45)] sm:px-10 lg:mb-24 lg:rounded-r-none lg:px-12 lg:pb-16 lg:pt-20">
+            <GridMark
+              segments={LEFT_MARK}
+              className="pointer-events-none absolute -left-10 top-64 hidden h-40 text-brand-500 sm:block xl:-left-6 xl:h-44"
+            />
+            <GridMark
+              segments={RIGHT_MARK}
+              className="pointer-events-none absolute -right-16 top-10 hidden h-44 text-brand-500 sm:block xl:-right-10 xl:h-52"
+            />
 
-        <Reveal delay={40}>
-          <ul className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            {COUNTRIES.map(({ name, Flag }) => (
-              <li key={name}>
-                <span className="inline-flex items-center gap-2.5 rounded-full border border-ink-100 bg-white py-2.5 pl-2.5 pr-5 shadow-card">
-                  {/* Ring, because Canada's and the US's white edges would
-                      otherwise bleed into the white chip behind them. */}
-                  <Flag className="h-5 w-[1.875rem] shrink-0 rounded-[3px] ring-1 ring-inset ring-ink-900/15" />
-                  <span className="text-sm font-medium text-ink-800">
-                    {name}
-                  </span>
+            <Reveal>
+              <div className="relative mx-auto max-w-sm text-center">
+                <span className="inline-flex rounded-full bg-brand-100/80 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-brand-600">
+                  Work With Our Team
                 </span>
-              </li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal delay={60}>
-          <div className="mt-12 overflow-hidden rounded-4xl border border-ink-100 shadow-lift lg:grid lg:grid-cols-[1.25fr_1fr]">
-            <div className="bg-ink-900 p-8 sm:p-10 lg:p-12">
-              <h3 className="text-xl font-semibold text-white">
-                A team, not a job board
-              </h3>
-              <p className="mt-3 max-w-md text-sm leading-relaxed text-ink-300">
-                The opportunity comes from us. That is the whole difference — we
-                respond quickly without delay.
-              </p>
-
-              <ul className="mt-9 space-y-7">
-                {HOW_WE_WORK.map((point) => (
-                  <li key={point.title} className="flex items-start gap-4">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-brand-300">
-                      <point.icon className="h-5 w-5" />
-                    </span>
-                    <div>
-                      <h4 className="text-[0.9375rem] font-semibold text-white">
-                        {point.title}
-                      </h4>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-300">
-                        {point.body}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Centred: the left column runs taller, and bottom-aligning this
-                one left an obvious well of empty space under it. */}
-            <div className="flex flex-col justify-center bg-ink-50 p-8 sm:p-10 lg:p-12">
-              <h3 className="text-xl font-semibold text-ink-900">
-                What we will never do
-              </h3>
-
-              <ul className="mt-7 space-y-4">
-                {NEVER.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-start gap-3 text-sm leading-relaxed text-ink-700"
-                  >
-                    <Check className="mt-0.5 h-4 w-4 shrink-0 text-signal-500" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8 flex items-start gap-3 rounded-2xl border border-ink-200 bg-white p-4">
-                <Shield className="mt-0.5 h-4 w-4 shrink-0 text-signal-600" />
-                <p className="text-sm leading-relaxed text-ink-700">
-                  If anyone claiming to be from {SITE.name} asks you for money,
-                  it is not us. Tell us and we will deal with it.
+                <h2 className="mt-6 text-balance text-4xl font-medium leading-[1.1] tracking-[-0.03em] text-ink-950 xl:text-[2.75rem]">
+                  Welcome to our Team!
+                </h2>
+                <p className="mx-auto mt-5 max-w-xs text-pretty text-sm leading-relaxed text-ink-700">
+                  The opportunity comes from us — a team, not a job board — and
+                  we respond quickly without delay.
                 </p>
+                <div className="mt-7">
+                  <Button to="/join" size="md" className="px-6!">
+                    <ArrowRight className="h-4 w-4 -rotate-45" />
+                    Tell us what you can do
+                  </Button>
+                </div>
+              </div>
+            </Reveal>
+
+            <Reveal delay={60}>
+              <ul className="relative mt-10 flex flex-wrap items-center justify-center gap-2.5">
+                {COUNTRIES.map(({ name, Flag }) => (
+                  <li key={name}>
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white py-2 pl-2 pr-4 shadow-[0_10px_24px_-16px_rgb(42_88_208/0.5)]">
+                      {/* Ring, because Canada's and the US's white edges would
+                          otherwise bleed into the white chip behind them. */}
+                      <Flag className="h-4 w-6 shrink-0 rounded-[3px] ring-1 ring-inset ring-ink-900/15" />
+                      <span className="text-xs font-medium text-ink-800">{name}</span>
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+
+            {/* Statement, then the two cards side by side. */}
+            <div className="relative mt-20">
+              <Reveal>
+                <h3 className="text-balance text-2xl font-medium leading-[1.25] tracking-[-0.02em] text-ink-950 sm:text-3xl">
+                  A team, not a job board.
+                </h3>
+                <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-ink-600">
+                  The opportunity comes from us. That is the whole difference —
+                  no middlemen, and a real reply.
+                </p>
+              </Reveal>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {HOW_WE_WORK.map((point, index) => (
+                  <Reveal key={point.title} delay={index * 90} className="h-full">
+                    <article className="h-full rounded-xl bg-white p-6 shadow-[0_1px_2px_rgb(20_36_59/0.04),0_18px_40px_-28px_rgb(42_88_208/0.4)] transition-transform duration-300 hover:-translate-y-1">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-500 text-white">
+                        <point.icon className="h-5.5 w-5.5" />
+                      </span>
+                      <h4 className="mt-5 text-sm font-semibold text-ink-950">{point.title}</h4>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink-700">{point.body}</p>
+                    </article>
+                  </Reveal>
+                ))}
               </div>
             </div>
           </div>
-        </Reveal>
 
-        <Reveal delay={100}>
-          <div className="mt-10 flex flex-col items-center gap-4">
-            <Button to="/join" size="lg">
-              Tell us what you can do
-              <ArrowRight className="h-4 w-4" />
-            </Button>
-            {/*
-              Deliberately not "we will find you a job". How many people we can
-              take on depends on what the team is building at the time, and a
-              guarantee we cannot keep is the one thing that would make this
-              page dishonest.
-            */}
-            <p className="max-w-md text-center text-sm leading-relaxed text-ink-500">
-              Free to join, and free to stay. How many people we can take on at
-              once depends on what the team is building.
-            </p>
+          {/* ---- Right half: why we're great to work with ------------- */}
+          {/* Sits a little lower than the light half, so the two are staggered. */}
+          <div className="rounded-[2rem] bg-[#071233] px-6 pb-14 pt-16 flex flex-col text-white shadow-[0_30px_70px_-40px_rgb(10_20_60/0.6)] sm:px-10 lg:mt-24 lg:rounded-l-none lg:px-12 lg:pb-16 lg:pt-20">
+            <div>
+              <Reveal>
+                <h3 className="text-balance text-3xl font-medium leading-[1.2] tracking-[-0.02em] xl:text-[2.25rem]">
+                  Why we&rsquo;re great to work with
+                </h3>
+                <p className="mt-6 max-w-md text-pretty text-sm leading-relaxed text-ink-300">
+                  Free to join, and free to stay. These are the things we will
+                  never do — the reason you can trust what you find here.
+                </p>
+              </Reveal>
+
+              <div className="mt-10 grid gap-3 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+                {NEVER.map((point, index) => (
+                  <Reveal key={point.title} delay={index * 90} className="h-full">
+                    <article className="h-full rounded-xl bg-[#18233f] p-5 transition-colors duration-300 hover:bg-[#1d2a4a]">
+                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2e85c] text-[#0b1638]">
+                        <point.icon className="h-5.5 w-5.5" />
+                      </span>
+                      <h4 className="mt-7 text-sm font-medium text-white">{point.title}</h4>
+                      <p className="mt-2.5 text-xs leading-relaxed text-ink-300">{point.body}</p>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+
+            {/* Call to action, with a notched night-earth panel on the right. */}
+            <Reveal delay={60} className="mt-auto pt-14">
+              <div className="relative grid overflow-hidden rounded-xl bg-[#18233f] sm:grid-cols-[1.5fr_1fr]">
+                <div className="p-7 sm:p-9">
+                  <h3 className="text-balance text-xl font-medium leading-snug tracking-[-0.01em] sm:text-2xl">
+                    Want to join the {SITE.name} team? Tell us what you can do.
+                  </h3>
+                  <div className="mt-7">
+                    <Button to="/join" size="sm" className="whitespace-nowrap px-5!">
+                      <ArrowRight className="h-3.5 w-3.5 -rotate-45" />
+                      Tell us what you can do
+                    </Button>
+                  </div>
+                  {/* Deliberately not "we will find you a job": how many people
+                      we can take on depends on what the team is building, and a
+                      guarantee we cannot keep would make this page dishonest. */}
+                  <p className="mt-5 text-[0.7rem] leading-relaxed text-ink-400">
+                    If anyone claiming to be from {SITE.name} asks you for
+                    money, it is not us.
+                  </p>
+                </div>
+
+                <div className="relative hidden min-h-56 sm:block">
+                  <svg
+                    viewBox="0 0 300 300"
+                    preserveAspectRatio="xMaxYMid slice"
+                    className="absolute inset-0 h-full w-full"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <defs>
+                      <clipPath id="work-notch">
+                        <path d="M150 0H300V300H95a30 30 0 0 1-30-30V125a30 30 0 0 1 30-30h25a30 30 0 0 0 30-30Z" />
+                      </clipPath>
+                      <linearGradient id="work-notch-tint" x1="0" y1="0" x2="1" y2="1">
+                        <stop offset="0" stopColor="#356ae6" stopOpacity="0.25" />
+                        <stop offset="1" stopColor="#071233" stopOpacity="0.1" />
+                      </linearGradient>
+                    </defs>
+                    <g clipPath="url(#work-notch)">
+                      <image
+                        href="/images/earth/earth-night-blue.jpg"
+                        x="-160"
+                        y="-30"
+                        width="720"
+                        height="360"
+                        preserveAspectRatio="xMidYMid slice"
+                      />
+                      <rect width="300" height="300" fill="url(#work-notch-tint)" />
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
       </Container>
     </section>
   );
