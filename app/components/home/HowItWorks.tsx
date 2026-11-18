@@ -195,6 +195,9 @@ export function HowItWorks() {
         <div className="absolute -right-32 top-10 h-[28rem] w-[28rem] rounded-full bg-[radial-gradient(circle,rgb(200_218_252/0.6)_0%,rgb(200_218_252/0.2)_55%,transparent_72%)]" />
         <div className="absolute right-[12%] top-16 h-16 w-16 rounded-full bg-brand-100/60" />
         <div className="absolute -bottom-40 -right-24 h-[24rem] w-[24rem] rounded-full bg-[radial-gradient(circle,rgb(190_210_250/0.6)_0%,transparent_70%)]" />
+        {/* Fade the clipped circles out at the top edge, so the hand-off from
+            the Mission section shows no line. */}
+        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-[#f4f7fe] to-transparent" />
       </div>
 
       <Container width="wide" className="relative">

@@ -69,6 +69,12 @@
 }
 
 @layer base {
+  :root {
+    /* Where the hero ends and the Mission section begins. Both read this, so
+       the seam between them is one colour and never shows as a line. */
+    --mission-top: #f1f6ff;
+  }
+
   html {
     color-scheme: light;
     scroll-behavior: smooth;
@@ -155,7 +161,7 @@
   /* Stacked layout: the sky turns at the globe, not behind the copy. */
   @media (max-width: 1023.98px) {
     .hero-sky {
-      background-image: linear-gradient(180deg, #ffffff 0%, #eef4ff 100%);
+      background-image: linear-gradient(180deg, #ffffff 0%, var(--mission-top) 100%);
       animation: none;
     }
   }

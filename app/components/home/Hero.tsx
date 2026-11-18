@@ -227,24 +227,33 @@ export function Hero() {
         </div>
       </Container>
 
-      {/* Horizon wave along the bottom edge. */}
+      {/*
+        Horizon: a translucent glow wave, then a solid wave filled with the
+        exact colour the Mission section starts with (--mission-top). The
+        curve is the only transition between the two sections — there is no
+        straight edge for the eye to catch.
+      */}
       <svg
         aria-hidden="true"
         focusable="false"
-        viewBox="0 0 1440 120"
+        viewBox="0 0 1440 140"
         preserveAspectRatio="none"
-        className="pointer-events-none absolute inset-x-0 bottom-0 hidden h-20 w-full lg:block"
+        className="pointer-events-none absolute inset-x-0 -bottom-px hidden h-28 w-full lg:block"
       >
         <defs>
-          <linearGradient id="hero-wave" x1="0" x2="1" y1="0" y2="0">
-            <stop offset="0" stopColor="#ffffff" stopOpacity="0.95" />
-            <stop offset="0.55" stopColor="#dbe7ff" stopOpacity="0.7" />
-            <stop offset="1" stopColor="#8fb3ff" stopOpacity="0.45" />
+          <linearGradient id="hero-wave-glow" x1="0" x2="1" y1="0" y2="0">
+            <stop offset="0" stopColor="#ffffff" stopOpacity="0.9" />
+            <stop offset="0.55" stopColor="#dbe7ff" stopOpacity="0.55" />
+            <stop offset="1" stopColor="#8fb3ff" stopOpacity="0.4" />
           </linearGradient>
         </defs>
         <path
-          d="M0 70C240 40 480 30 720 52s520 58 720 20v48H0Z"
-          fill="url(#hero-wave)"
+          d="M0 74C240 44 480 34 720 56s520 58 720 20v64H0Z"
+          fill="url(#hero-wave-glow)"
+        />
+        <path
+          d="M0 100C260 78 520 74 760 92s480 40 680 14v34H0Z"
+          fill="var(--mission-top)"
         />
       </svg>
     </section>
