@@ -21,6 +21,8 @@ export async function loader({ request }: Route.LoaderArgs) {
 }
 
 export const links: Route.LinksFunction = () => [
+  { rel: "icon", type: "image/png", href: "/favicon-64.png" },
+  { rel: "apple-touch-icon", href: "/images/brand/humnova-mark.png" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

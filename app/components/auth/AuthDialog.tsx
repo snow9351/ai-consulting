@@ -4,6 +4,7 @@ import { useFetcher } from "react-router";
 import { Close } from "~/components/ui/icons";
 import type { AuthMode, AuthResult, Role } from "~/lib/auth";
 import { SITE } from "~/lib/site";
+import { MARK_SRC } from "~/components/site/Logo";
 
 interface AuthDialogProps {
   mode: AuthMode;
@@ -103,14 +104,7 @@ export function AuthDialog({ mode, onModeChange, onClose }: AuthDialogProps) {
         </button>
 
         <div className="relative px-7 pb-8 pt-9 sm:px-9">
-          <svg viewBox="0 0 32 32" className="h-11 w-11" aria-hidden="true">
-            <circle cx="16" cy="16" r="15" className="fill-brand-500" />
-            <g fill="none" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.95">
-              <circle cx="16" cy="16" r="9.5" />
-              <ellipse cx="16" cy="16" rx="4.2" ry="9.5" />
-              <path d="M7 13.2h18M7 18.8h18" />
-            </g>
-          </svg>
+          <img src={MARK_SRC} alt="" width={256} height={256} className="h-14 w-14" />
 
           <h2 id={titleId} className="mt-5 text-2xl font-bold tracking-[-0.02em] text-ink-950">
             {copy.title}
