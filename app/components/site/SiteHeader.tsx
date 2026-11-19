@@ -1,14 +1,44 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router";
+import { Link, useFetcher, useLocation } from "react-router";
 import { Button } from "~/components/ui/Button";
 import { Close, Menu } from "~/components/ui/icons";
 import { PRIMARY_NAV } from "~/lib/site";
 import { Logo } from "./Logo";
+import { useAuth } from "~/components/auth/AuthProvider";
+import { initials, type PublicUser } from "~/lib/auth";
+
+/** Avatar, name and a sign-out button, for a signed-in visitor. */
+function AccountChip({ user, stacked = false }: { user: PublicUser; stacked?: boolean }) {
+  const fetcher = useFetcher();
+  const busy = fetcher.state !== "idle";
+  return (
+    <div className={stacked ? "flex items-center justify-between gap-3" : "flex items-center gap-3"}>
+      <span className="inline-flex items-center gap-2.5">
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-400 to-brand-600 text-sm font-bold text-white shadow-[0_6px_14px_-6px_rgb(53_106_230/0.7)]">
+          {initials(user.name)}
+        </span>
+        <span className="max-w-40 truncate text-[0.9375rem] font-semibold text-ink-900">{user.name}</span>
+      </span>
+      {user.isAdmin && (
+        <Button to="/admin/invites" variant="secondary" size="sm" className="hover:scale-105">
+          Invites
+        </Button>
+      )}
+      <fetcher.Form method="post" action="/auth">
+        <input type="hidden" name="intent" value="signout" />
+        <Button type="submit" variant="ghost" size="sm" className="hover:scale-105">
+          {busy ? "Signing out…" : "Sign out"}
+        </Button>
+      </fetcher.Form>
+    </div>
+  );
+}
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const { user, openAuth } = useAuth();
 
   // Collapse the panel whenever navigation happens.
   useEffect(() => {
@@ -68,12 +98,18 @@ export function SiteHeader() {
         </ul>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Button to="/join" variant="ghost" size="sm" className="hover:scale-105">
-            Sign In
-          </Button>
-          <Button to="/join" variant="primary" size="sm" className="hover:scale-105">
-            Join for Free
-          </Button>
+          {user ? (
+            <AccountChip user={user} />
+          ) : (
+            <>
+              <Button variant="ghost" size="sm" className="hover:scale-105" onClick={() => openAuth("signin")} data-auth-mode="signin">
+                Sign In
+              </Button>
+              <Button variant="primary" size="sm" className="hover:scale-105" onClick={() => openAuth("signup")} data-auth-mode="signup">
+                Join for Free
+              </Button>
+            </>
+          )}
         </div>
 
         <button
@@ -82,6 +118,7 @@ export function SiteHeader() {
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          data-auth-free
           className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-700 transition-colors hover:bg-ink-50 lg:hidden"
         >
           {menuOpen ? <Close className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -110,12 +147,18 @@ export function SiteHeader() {
           </ul>
 
           <div className="mt-6 flex flex-col gap-3">
-            <Button to="/join" variant="primary" size="lg" onClick={() => setMenuOpen(false)}>
-              Join for Free
-            </Button>
-            <Button to="/join" variant="secondary" size="lg" onClick={() => setMenuOpen(false)}>
-              Sign In
-            </Button>
+            {user ? (
+              <AccountChip user={user} stacked />
+            ) : (
+              <>
+                <Button variant="primary" size="lg" data-auth-mode="signup" onClick={() => openAuth("signup")}>
+                  Join for Free
+                </Button>
+                <Button variant="secondary" size="lg" data-auth-mode="signin" onClick={() => openAuth("signin")}>
+                  Sign In
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

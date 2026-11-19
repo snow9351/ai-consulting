@@ -13,6 +13,12 @@ import "./app.css";
 import { Layout } from "./routes/layout";
 import { Button } from "./components/ui/Button";
 import { SITE } from "./lib/site";
+import { getUser } from "./lib/auth.server";
+
+/** Who is signed in, for every page. Read it with useUser() from ~/lib/auth. */
+export async function loader({ request }: Route.LoaderArgs) {
+  return { user: await getUser(request) };
+}
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },

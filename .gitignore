@@ -18,6 +18,9 @@
 vite.config.ts.timestamp-*
 vite.config.js.timestamp-*
 
+# Local account store (see app/lib/auth.server.ts)
+/data/
+
 # Environment variables
 .env
 .env.*

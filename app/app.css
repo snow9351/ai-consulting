@@ -257,6 +257,20 @@
     50% { fill: var(--color-brand-300); }
   }
 
+  /* Sign-in / sign-up dialog. */
+  .auth-backdrop {
+    animation: auth-fade 200ms ease-out;
+  }
+  .auth-panel {
+    animation: auth-pop 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes auth-fade {
+    from { opacity: 0; }
+  }
+  @keyframes auth-pop {
+    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  }
+
   @keyframes hero-sky {
     from { background-position: 0% 50%; }
     to { background-position: 100% 50%; }
