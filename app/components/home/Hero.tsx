@@ -128,7 +128,7 @@ export function Hero() {
         <div className="absolute -left-40 top-1/3 h-[36rem] w-[36rem] rounded-full bg-[radial-gradient(circle,rgb(220_232_255/0.9)_0%,transparent_65%)]" />
       </div>
 
-      <Container width="wide" className="relative py-16 sm:py-20 lg:py-24">
+      <Container width="wide" className="relative py-16 sm:py-20 lg:pt-10 lg:pb-20">
         {/* min-w-0 on both grid items: a grid item defaults to min-width:auto,
             so the globe's 440px viewBox would otherwise set a min-content
             floor and push the whole page wider than a phone viewport. */}
@@ -142,7 +142,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={80}>
-              <h1 className="mt-7 text-balance text-[2.25rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink-950 sm:text-5xl lg:text-[3.75rem]">
+              <h1 className="mt-7 lg:mt-5 text-balance text-[2.25rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink-950 sm:text-5xl lg:text-[3.75rem]">
                 We Build <span className="text-brand-500">Software</span>{" "}
                 That Moves Your{" "}
                 <span className="relative inline-block whitespace-nowrap">
@@ -169,7 +169,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={140}>
-              <p className="mt-8 max-w-xl text-pretty text-lg font-medium leading-relaxed text-ink-700 sm:text-xl">
+              <p className="mt-8 max-w-xl lg:mt-6 text-pretty text-lg font-medium leading-relaxed text-ink-700 sm:text-xl">
                 JRATI designs, builds and scales web, mobile, cloud and AI
                 products — and gives you the technical advice to make the right
                 decisions, from first idea to production.
@@ -177,7 +177,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="mt-9 flex flex-col gap-4 lg:mt-7 sm:flex-row sm:items-center">
                 <Button
                   to="/contact"
                   size="lg"
@@ -201,7 +201,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={260}>
-              <ul className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-7">
+              <ul className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-7 lg:mt-7">
                 {COMMITMENTS.map((commitment) => (
                   <li
                     key={commitment}
@@ -220,7 +220,7 @@ export function Hero() {
           {/* Below lg the section is light, so the globe brings its own
               night sky; on wide screens the section gradient provides it. */}
           <Reveal delay={160} className="min-w-0">
-            <div className="relative rounded-[2rem] bg-[radial-gradient(ellipse_at_center,#0b2463_0%,#06123a_55%,#030a24_100%)] p-4 sm:p-8 lg:-my-10 lg:-mr-20 lg:rounded-none lg:bg-none lg:p-0 xl:-mr-28">
+            <div className="relative rounded-[2rem] bg-[radial-gradient(ellipse_at_center,#0b2463_0%,#06123a_55%,#030a24_100%)] p-4 sm:p-8 lg:-mt-10 lg:-mb-16 lg:-mr-20 lg:rounded-none lg:bg-none lg:p-0 xl:-mr-28">
               <GlobeVisual />
             </div>
           </Reveal>

@@ -259,7 +259,7 @@
 
   /*
    * Flow band under the hero (TechMarquee). The track holds two copies of the
-   * list and slides by one copy (-50%), so the loop is seamless. Hover pauses.
+   * list and slides by one copy (-50%), so the loop is seamless. It never pauses.
    */
   .marquee-track {
     animation: marquee 45s linear infinite;
@@ -268,8 +268,28 @@
     animation-direction: reverse;
     animation-duration: 52s;
   }
-  .marquee:hover .marquee-track {
-    animation-play-state: paused;
+
+  /*
+   * Flow ripple: the chip under the mouse (.is-hot, set by TechMarquee) lifts
+   * and grows, its neighbours rise a little less, the next ones barely — a
+   * soft wave that hands over from chip to chip as the row flows past.
+   */
+  .tech-chip {
+    transition: translate 450ms cubic-bezier(0.34, 1.56, 0.64, 1),
+      scale 450ms cubic-bezier(0.34, 1.56, 0.64, 1), color 300ms, box-shadow 300ms;
+  }
+  .tech-chip.is-hot {
+    translate: 0 -8px;
+    scale: 1.1;
+  }
+  .tech-chip.is-hot + .tech-chip,
+  .tech-chip:has(+ .tech-chip.is-hot) {
+    translate: 0 -4px;
+    scale: 1.04;
+  }
+  .tech-chip.is-hot + .tech-chip + .tech-chip,
+  .tech-chip:has(+ .tech-chip + .tech-chip.is-hot) {
+    translate: 0 -1.5px;
   }
   @keyframes marquee {
     from { transform: translateX(0); }

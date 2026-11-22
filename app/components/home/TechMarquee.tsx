@@ -1,7 +1,10 @@
+import { useEffect, useRef } from "react";
+
 /**
  * "Flow band" under the hero: an endless, slowly scrolling strip of the
- * technologies we build with. Two rows drift in opposite directions; hovering
- * a row pauses it so a name can be read.
+ * technologies we build with. Two rows drift in opposite directions and never
+ * stop. Whichever chip is under the mouse lifts, with its neighbours rising a
+ * little less; as the row flows on, the lift passes from chip to chip.
  *
  * The band sits on --mission-top, the colour the hero's bottom wave ends in
  * and the About section starts with, so it joins both without a seam.
@@ -50,7 +53,9 @@ function Row({ items, reverse = false }: { items: Tech[]; reverse?: boolean }) {
   // width, so the loop has no visible jump.
   const loop = [...items, ...items];
   return (
-    <div className="marquee group flex overflow-hidden">
+    // Vertical padding leaves room for a lifted chip to rise and grow
+    // (see .tech-chip in app.css) without being clipped.
+    <div className="marquee flex overflow-hidden pt-3.5 pb-1.5">
       <ul
         className={`marquee-track flex shrink-0 items-center gap-4 pr-4 ${reverse ? "marquee-reverse" : ""}`}
       >
@@ -58,14 +63,14 @@ function Row({ items, reverse = false }: { items: Tech[]; reverse?: boolean }) {
           <li
             key={`${name}-${i}`}
             aria-hidden={i >= items.length ? true : undefined}
-            className="group/chip inline-flex shrink-0 items-center gap-3 rounded-full border border-white bg-white/80 px-5 py-2.5 text-[0.9375rem] font-semibold whitespace-nowrap text-ink-800 shadow-[0_10px_24px_-18px_rgb(42_88_208/0.6)] backdrop-blur-sm transition-colors duration-300 hover:text-brand-600"
+            className="tech-chip group/chip inline-flex shrink-0 items-center gap-3 rounded-full border border-white bg-white/80 px-5 py-2.5 text-[0.9375rem] font-semibold whitespace-nowrap text-ink-800 shadow-[0_10px_24px_-18px_rgb(42_88_208/0.6)] backdrop-blur-sm [&.is-hot]:text-brand-600 [&.is-hot]:shadow-[0_18px_30px_-16px_rgb(42_88_208/0.7)]"
           >
             <img
               src={`/images/tech/${icon}.svg`}
               alt=""
               width={22}
               height={22}
-              className="h-5.5 w-5.5 object-contain transition-transform duration-300 group-hover/chip:scale-110"
+              className="h-5.5 w-5.5 object-contain"
             />
             {name}
           </li>
@@ -75,22 +80,88 @@ function Row({ items, reverse = false }: { items: Tech[]; reverse?: boolean }) {
   );
 }
 
+/**
+ * Marks the chip under the pointer with .is-hot, every frame while the
+ * pointer is over the band. CSS :hover is not enough here: browsers do not
+ * reliably update it when elements slide under a still mouse.
+ *
+ * Hit-testing uses each row's box for y and the chips' x positions only, so a
+ * chip lifting out from under the cursor does not make it flicker.
+ */
+function useFlowHover() {
+  const bandRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const band = bandRef.current;
+    if (!band) return;
+    let pointer: { x: number; y: number } | null = null;
+    let hot: Element | null = null;
+    let frame = 0;
+
+    const setHot = (chip: Element | null) => {
+      if (chip === hot) return;
+      hot?.classList.remove("is-hot");
+      chip?.classList.add("is-hot");
+      hot = chip;
+    };
+
+    const update = () => {
+      frame = 0;
+      if (!pointer) return setHot(null);
+      const { x, y } = pointer;
+      let found: Element | null = null;
+      for (const row of band.querySelectorAll(".marquee")) {
+        const box = row.getBoundingClientRect();
+        if (y < box.top || y > box.bottom) continue;
+        let best = Infinity;
+        for (const chip of row.querySelectorAll(".tech-chip")) {
+          const r = chip.getBoundingClientRect();
+          if (x < r.left - 8 || x > r.right + 8) continue;
+          const distance = Math.abs(x - (r.left + r.right) / 2);
+          if (distance < best) {
+            best = distance;
+            found = chip;
+          }
+        }
+      }
+      setHot(found);
+      frame = requestAnimationFrame(update);
+    };
+
+    const onMove = (event: PointerEvent) => {
+      pointer = { x: event.clientX, y: event.clientY };
+      if (!frame) frame = requestAnimationFrame(update);
+    };
+    const onLeave = () => {
+      pointer = null;
+      cancelAnimationFrame(frame);
+      frame = 0;
+      setHot(null);
+    };
+
+    band.addEventListener("pointermove", onMove);
+    band.addEventListener("pointerleave", onLeave);
+    return () => {
+      band.removeEventListener("pointermove", onMove);
+      band.removeEventListener("pointerleave", onLeave);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  return bandRef;
+}
+
 export function TechMarquee() {
+  const bandRef = useFlowHover();
   return (
     <section
       aria-label="Technologies we work with"
-      className="relative pt-6 pb-4 sm:pt-8"
-      style={{ background: "var(--mission-top)" }}
+      className="relative bg-(--mission-top) pt-6 pb-4 sm:pt-8 lg:pt-4"
     >
-      <p className="mb-6 flex items-center justify-center gap-4 text-center text-xs font-bold uppercase tracking-[0.3em] text-brand-600">
-        <span aria-hidden="true" className="h-px w-10 bg-brand-300 sm:w-24" />
-        Technologies we work with
-        <span aria-hidden="true" className="h-px w-10 bg-brand-300 sm:w-24" />
-      </p>
-
       {/* Soft fade at both ends, so chips drift in and out of view. */}
       <div
-        className="flex flex-col gap-4"
+        ref={bandRef}
+        className="flex flex-col"
         style={{
           maskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)",
           WebkitMaskImage: "linear-gradient(90deg, transparent, black 10%, black 90%, transparent)",
