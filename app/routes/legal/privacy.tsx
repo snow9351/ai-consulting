@@ -7,7 +7,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "How HUMNOVA will handle your personal data. The full policy is being prepared.",
+        "How JRATI will handle your personal data. The full policy is being prepared.",
     },
   ];
 }

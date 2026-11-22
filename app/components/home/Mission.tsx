@@ -197,7 +197,7 @@ export function Mission() {
                   depend on.
                 </p>
                 <p>
-                  <strong className="font-semibold text-ink-900">HUMNOVA</strong>{" "}
+                  <strong className="font-semibold text-ink-900">JRATI</strong>{" "}
                   combines hands-on engineering with strategic consulting, so
                   every line of code serves a business goal. Whether you need a
                   new product, a rescue for an existing one, or advice on your

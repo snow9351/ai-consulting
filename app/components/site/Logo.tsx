@@ -6,15 +6,13 @@ export interface LogoProps {
   className?: string;
 }
 
-/** Full wordmark (people + orbit + star, then "HUMNOVA"), transparent PNG. */
-export const LOGO_SRC = "/images/brand/humnova-logo.png";
-/** Just the mark, square — for tight spots like the sign-in dialog. */
+/** The mark (people + orbit + star), square, transparent PNG. */
 export const MARK_SRC = "/images/brand/humnova-mark.png";
 
 /**
- * Company logo. On light backgrounds it is the full artwork. On dark ones the
- * navy wordmark would disappear, so it falls back to the mark plus the name
- * set in white.
+ * Company logo: the mark plus the company name (SITE.name) set as text —
+ * navy on light backgrounds, white on dark ones. Change the name in
+ * ~/lib/site and the logo follows.
  */
 export function Logo({ tone = "light", className = "" }: LogoProps) {
   return (
@@ -23,28 +21,20 @@ export function Logo({ tone = "light", className = "" }: LogoProps) {
       className={`group inline-flex shrink-0 items-center gap-2.5 ${className}`}
       aria-label={`${SITE.name} — home`}
     >
-      {tone === "light" ? (
-        <img
-          src={LOGO_SRC}
-          alt=""
-          width={892}
-          height={160}
-          className="h-9 w-auto transition-transform duration-500 ease-out group-hover:scale-[1.04] sm:h-11"
-        />
-      ) : (
-        <>
-          <img
-            src={MARK_SRC}
-            alt=""
-            width={256}
-            height={256}
-            className="h-9 w-9 transition-transform duration-500 ease-out group-hover:scale-110"
-          />
-          <span className="text-[1.0625rem] font-semibold tracking-[-0.01em] text-white">
-            {SITE.name}
-          </span>
-        </>
-      )}
+      <img
+        src={MARK_SRC}
+        alt=""
+        width={256}
+        height={256}
+        className="h-9 w-9 transition-transform duration-500 ease-out group-hover:scale-110 sm:h-11 sm:w-11"
+      />
+      <span
+        className={`text-[1.375rem] leading-none font-extrabold tracking-[0.08em] sm:text-[1.625rem] ${
+          tone === "light" ? "text-[#0b1f4f]" : "text-white"
+        }`}
+      >
+        {SITE.name}
+      </span>
     </Link>
   );
 }

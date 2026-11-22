@@ -7,7 +7,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "The standards everyone on HUMNOVA agrees to. Full guidelines are being finalised.",
+        "The standards everyone on JRATI agrees to. Full guidelines are being finalised.",
     },
   ];
 }

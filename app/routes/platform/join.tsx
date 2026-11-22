@@ -9,7 +9,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "HUMNOVA is free for job seekers — to join, to build a profile, and to apply. Accounts open in Phase 5.",
+        "JRATI is free for job seekers — to join, to build a profile, and to apply. Accounts open in Phase 5.",
     },
   ];
 }

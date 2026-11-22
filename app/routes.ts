@@ -3,7 +3,7 @@ import { type RouteConfig, index, route } from "@react-router/dev/routes";
 export default [
   index("routes/home.tsx"),
 
-  // HUMNOVA platform. Functionality lands in Phases 2–5; these routes exist so
+  // JRATI platform. Functionality lands in Phases 2–5; these routes exist so
   // the navigation resolves and visitors get an honest status instead of a 404
   // or a mocked-up page.
   route("opportunities", "routes/platform/opportunities.tsx"),

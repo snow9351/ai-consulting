@@ -170,7 +170,7 @@ export function Hero() {
 
             <Reveal delay={140}>
               <p className="mt-8 max-w-xl text-pretty text-lg font-medium leading-relaxed text-ink-700 sm:text-xl">
-                HUMNOVA designs, builds and scales web, mobile, cloud and AI
+                JRATI designs, builds and scales web, mobile, cloud and AI
                 products — and gives you the technical advice to make the right
                 decisions, from first idea to production.
               </p>
