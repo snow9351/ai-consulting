@@ -13,12 +13,6 @@ import "./app.css";
 import { Layout } from "./routes/layout";
 import { Button } from "./components/ui/Button";
 import { SITE } from "./lib/site";
-import { getUser } from "./lib/auth.server";
-
-/** Who is signed in, for every page. Read it with useUser() from ~/lib/auth. */
-export async function loader({ request }: Route.LoaderArgs) {
-  return { user: await getUser(request) };
-}
 
 export const links: Route.LinksFunction = () => [
   { rel: "icon", type: "image/png", href: "/favicon-64.png" },
@@ -83,7 +77,7 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
     message = error.status === 404 ? "Page not found" : "Error";
     details =
       error.status === 404
-        ? "That page does not exist — but your next opportunity still might."
+        ? "That page does not exist — but we would still love to hear about your project."
         : error.statusText || details;
   } else if (import.meta.env.DEV && error && error instanceof Error) {
     details = error.message;
@@ -109,8 +103,8 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
               <Button to="/" size="lg">
                 Back to home
               </Button>
-              <Button to="/opportunities" variant="secondary" size="lg">
-                Find opportunities
+              <Button to="/contact" variant="secondary" size="lg">
+                Contact us
               </Button>
             </div>
 

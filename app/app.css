@@ -257,18 +257,31 @@
     50% { fill: var(--color-brand-300); }
   }
 
-  /* Sign-in / sign-up dialog. */
-  .auth-backdrop {
-    animation: auth-fade 200ms ease-out;
+  /*
+   * Flow band under the hero (TechMarquee). The track holds two copies of the
+   * list and slides by one copy (-50%), so the loop is seamless. Hover pauses.
+   */
+  .marquee-track {
+    animation: marquee 45s linear infinite;
   }
-  .auth-panel {
-    animation: auth-pop 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  .marquee-reverse {
+    animation-direction: reverse;
+    animation-duration: 52s;
   }
-  @keyframes auth-fade {
-    from { opacity: 0; }
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
   }
-  @keyframes auth-pop {
-    from { opacity: 0; transform: translateY(14px) scale(0.97); }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Contact page: the topic form slides in when a card is picked. */
+  .contact-form-in {
+    animation: contact-form-in 420ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  @keyframes contact-form-in {
+    from { opacity: 0; transform: translateY(16px); }
   }
 
   @keyframes hero-sky {

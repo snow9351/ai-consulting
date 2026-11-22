@@ -6,13 +6,11 @@
 
 export const SITE = {
   name: "HUMNOVA",
-  /** What the name is built from. Surfaced in the footer, under the logo. */
-  // nameOrigin: "",
-  primaryMessage: "Opportunity has no borders.",
-  secondaryMessage: "Your financial situation should never define your future.",
-  philosophy: "Human beings create money. Money should serve human beings.",
+  primaryMessage: "Software that moves your business forward.",
+  secondaryMessage: "Engineering and consulting, from first idea to production.",
+  philosophy: "Great software starts with understanding the business behind it.",
   description:
-    "HUMNOVA connects talented people with remote work and international opportunities. Free for job seekers — always.",
+    "HUMNOVA is a software development and consulting company. We design, build and scale web, mobile, cloud and AI products for businesses around the world.",
 } as const;
 
 export interface NavLink {
@@ -30,11 +28,10 @@ export interface NavLink {
 export const CONTACT_EMAIL: string | null = null;
 
 export const PRIMARY_NAV: NavLink[] = [
-  { label: "Find Opportunities", to: "/opportunities", upcoming: true },
-  { label: "For Companies", to: "/employers", upcoming: true },
-  { label: "Why HUMNOVA", to: "/#why" },
-  { label: "Our Mission", to: "/#mission" },
-  { label: "How It Works", to: "/#how-it-works" },
+  { label: "About Us", to: "/#mission" },
+  { label: "Services", to: "/#why" },
+  { label: "Features", to: "/#work" },
+  { label: "Contact Us", to: "/contact" },
 ];
 
 export interface FooterColumn {
@@ -44,27 +41,25 @@ export interface FooterColumn {
 
 export const FOOTER_NAV: FooterColumn[] = [
   {
-    heading: "Platform",
+    heading: "Services",
     links: [
-      { label: "Find Opportunities", to: "/opportunities", upcoming: true },
-      { label: "For Employers", to: "/employers", upcoming: true },
-      { label: "Why HUMNOVA", to: "/#why" },
-      { label: "How It Works", to: "/#how-it-works" },
+      { label: "What We Build", to: "/#why" },
+      { label: "How We Work", to: "/#how-it-works" },
+      { label: "Why Work With Us", to: "/#work" },
+      { label: "Dedicated Teams", to: "/#hire" },
     ],
   },
   {
     heading: "Company",
     links: [
       { label: "About Us", to: "/#mission" },
-      { label: "Our Mission", to: "/#mission" },
       { label: "Our Values", to: "/#values" },
-      { label: "Contact", to: "/contact" },
+      { label: "Contact Us", to: "/contact" },
     ],
   },
   {
-    heading: "Trust & Safety",
+    heading: "Legal",
     links: [
-      { label: "Community Guidelines", to: "/guidelines" },
       { label: "Privacy Policy", to: "/privacy" },
       { label: "Terms of Service", to: "/terms" },
     ],

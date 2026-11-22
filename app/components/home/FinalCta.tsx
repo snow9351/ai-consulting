@@ -4,9 +4,9 @@ import { Reveal } from "~/components/ui/Reveal";
 import { ArrowRight, Bolt, RocketSolid, Shield, Users } from "~/components/ui/icons";
 
 const ASSURANCES = [
-  { icon: Shield, label: "Free to join" },
-  { icon: Bolt, label: "Free to apply" },
-  { icon: Users, label: "No fee at any stage" },
+  { icon: Shield, label: "Free consultation" },
+  { icon: Bolt, label: "Fast turnaround" },
+  { icon: Users, label: "Dedicated expert team" },
 ];
 
 /** Left decoration: a frosted tile holding a group of people with a "+". */
@@ -100,15 +100,15 @@ export function FinalCta() {
                 <span aria-hidden="true" className="hidden h-px w-24 bg-brand-200 sm:block lg:w-40" />
                 <span className="inline-flex items-center gap-2 rounded-full bg-brand-100/70 px-5 py-2 text-sm font-semibold text-brand-600">
                   <RocketSolid className="h-5 w-5 text-brand-600" />
-                  Your Next Opportunity
+                  Your Next Project
                 </span>
                 <span aria-hidden="true" className="hidden h-px w-24 bg-brand-200 sm:block lg:w-40" />
               </div>
 
               <h2 className="mt-6 text-balance text-4xl font-bold leading-[1.08] tracking-[-0.03em] text-ink-950 sm:text-5xl lg:text-[3.75rem]">
-                Your Potential Deserves an{" "}
+                Let&rsquo;s Turn Your Idea Into{" "}
                 <span className="relative inline-block whitespace-nowrap text-brand-600">
-                  Opportunity
+                  Reality
                   <svg
                     viewBox="0 0 300 20"
                     preserveAspectRatio="none"
@@ -129,27 +129,27 @@ export function FinalCta() {
               </h2>
 
               <p className="mx-auto mt-7 max-w-2xl text-pretty text-lg font-medium leading-relaxed text-ink-600 sm:text-xl">
-                Wherever you live. Whatever your financial situation.
-                <br className="hidden sm:block" /> Your next opportunity can
-                begin here.
+                Tell us what you want to build. We will help you plan it, build
+                it<br className="hidden sm:block" /> and grow it — starting with
+                a free consultation.
               </p>
 
               <div className="mt-9 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                 <Button
-                  to="/join"
+                  to="/contact"
                   size="lg"
                   className="h-14! px-9! font-semibold! shadow-[0_14px_30px_-10px_rgb(42_88_208/0.6)]!"
                 >
-                  Join HUMNOVA for Free
+                  Start Your Project
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button
-                  to="/employers"
+                  to="/contact"
                   variant="outline"
                   size="lg"
                   className="h-14! px-12! font-semibold! text-brand-700!"
                 >
-                  I&rsquo;m hiring
+                  Book a Consultation
                 </Button>
               </div>
 

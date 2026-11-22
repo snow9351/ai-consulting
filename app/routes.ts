@@ -12,13 +12,6 @@ export default [
 
   route("contact", "routes/contact.tsx"),
 
-  // Sign in / sign up / sign out. POST-only resource route used by the
-  // auth dialog; the visitor never navigates to it.
-  route("auth", "routes/auth.ts"),
-
-  // Admin only (404 for everyone else): invite people to sign up.
-  route("admin/invites", "routes/admin/invites.tsx"),
-
   route("guidelines", "routes/legal/guidelines.tsx"),
   route("privacy", "routes/legal/privacy.tsx"),
   route("terms", "routes/legal/terms.tsx"),

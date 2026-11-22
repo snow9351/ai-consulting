@@ -14,30 +14,30 @@ export interface Step {
 export const STEPS: Step[] = [
   {
     number: "01",
-    title: "Join for free",
+    title: "Discover & consult",
     description:
-      "Create an account with an email address. No fee, no membership tier, no payment details.",
+      "We start with a free consultation to understand your goals, users and constraints, then turn them into a clear scope and plan.",
     icon: "userPlus",
   },
   {
     number: "02",
-    title: "Build your profile",
+    title: "Design & build",
     description:
-      "Describe your skills, languages, availability, and what you want to work on. Experience counts, a diploma is not required.",
+      "Our designers and engineers build your product in short iterations, so you see working software early and often.",
     icon: "code",
   },
   {
     number: "03",
-    title: "Discover opportunities",
+    title: "Test & launch",
     description:
-      "Browse remote roles and projects from people and businesses in other countries, with requirements stated upfront.",
+      "Every release is reviewed, tested and deployed with care, so launch day is calm and predictable.",
     icon: "briefcase",
   },
   {
     number: "04",
-    title: "Connect and grow",
+    title: "Support & scale",
     description:
-      "Apply, message directly, and build a track record that travels with you to the next opportunity.",
+      "After launch we monitor, maintain and improve your product as your users and your business grow.",
     icon: "growth",
   },
 ];
@@ -50,46 +50,46 @@ export interface Value {
 
 export const VALUES: Value[] = [
   {
-    title: "Humanity before money",
+    title: "Quality without shortcuts",
     description:
-      "Human beings create money. Money should serve human beings — never the other way around.",
+      "Clean code, code review and automated tests are part of every project — never optional extras.",
     icon: "scale",
   },
   {
-    title: "Equal opportunity",
+    title: "Global by default",
     description:
-      "Nationality, gender, race, and background are not qualifications, and they are not disqualifications either.",
+      "Our team works across time zones, so your project keeps moving and your questions get answered fast.",
     icon: "globe",
   },
   {
-    title: "No financial barriers to job seeking",
+    title: "Security first",
     description:
-      "Job seekers never pay to join, to build a profile, or to apply. That is a permanent commitment, not an introductory offer.",
+      "We design for security, privacy and reliability from the first line of code, not as an afterthought.",
     icon: "shield",
   },
   {
-    title: "Respect across borders",
+    title: "Partnership, not just delivery",
     description:
-      "Distance is not a licence for lower standards. Everyone on this platform is treated as a professional.",
+      "We treat your goals as our own, and we stay with you long after the first release.",
     icon: "handshake",
   },
   {
-    title: "Talent over background",
+    title: "People who own their work",
     description:
-      "People are evaluated on skills, character, motivation, and potential — not on where they were born or what they have.",
+      "Experienced engineers, designers and consultants who communicate clearly and take responsibility for results.",
     icon: "users",
   },
   {
-    title: "Fair and transparent work",
+    title: "Transparent from day one",
     description:
-      "Requirements, compensation, and expectations are stated plainly before anyone invests their time.",
+      "Clear estimates, honest timelines and regular updates — no surprises on scope or cost.",
     icon: "check",
   },
 ];
 
-/** Promises we hold ourselves to. Shown on the hero and the join page. */
+/** Short promises shown under the hero buttons. */
 export const COMMITMENTS: string[] = [
-  "Free for job seekers — forever",
-  "No upfront payments, ever",
-  "Open to every nationality",
+  "Free initial consultation",
+  "Transparent, fixed-scope estimates",
+  "Delivery across every time zone",
 ];

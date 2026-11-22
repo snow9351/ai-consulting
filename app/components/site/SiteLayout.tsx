@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import { AuthProvider } from "~/components/auth/AuthProvider";
 import { SiteFooter } from "./SiteFooter";
 import { SiteHeader } from "./SiteHeader";
 
@@ -10,30 +9,24 @@ import { SiteHeader } from "./SiteHeader";
  * required for edge-to-edge hero and band sections. Every existing page
  * (about, services, contact, countries) already supplies its own container,
  * so they are unaffected.
- *
- * AuthProvider wraps everything: it owns the sign-in / sign-up dialog and,
- * while signed out, turns every link or button click into that dialog.
  */
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
-    <AuthProvider>
-      <div className="flex min-h-screen flex-col bg-white">
-        <a
-          href="#main"
-          data-auth-free
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink-900 focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
-        >
-          Skip to content
-        </a>
+    <div className="flex min-h-screen flex-col bg-white">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-ink-900 focus:px-5 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white"
+      >
+        Skip to content
+      </a>
 
-        <SiteHeader />
+      <SiteHeader />
 
-        <main id="main" className="flex-1">
-          {children}
-        </main>
+      <main id="main" className="flex-1">
+        {children}
+      </main>
 
-        <SiteFooter />
-      </div>
-    </AuthProvider>
+      <SiteFooter />
+    </div>
   );
 }

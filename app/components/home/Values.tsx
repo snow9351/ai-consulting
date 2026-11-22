@@ -26,8 +26,8 @@ export function Values() {
       <Container width="wide">
         <SectionHeading
           eyebrow="Our Values"
-          title="The principles we will not trade away."
-          description="These are the commitments that decide what we build, who we let in, and how we make money."
+          title="The principles behind every project."
+          description="How we work with clients, write code and deliver results — on every engagement, large or small."
         />
 
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

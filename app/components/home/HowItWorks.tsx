@@ -206,18 +206,18 @@ export function HowItWorks() {
             <div className="flex items-center justify-center gap-4">
               <span aria-hidden="true" className="h-px w-16 bg-brand-200 sm:w-48" />
               <span className="rounded-full bg-brand-100/70 px-6 py-2 text-xs font-bold uppercase tracking-[0.18em] text-brand-600 sm:text-sm">
-                How It Works
+                How We Work
               </span>
               <span aria-hidden="true" className="h-px w-16 bg-brand-200 sm:w-48" />
             </div>
 
             <h2 className="mt-6 text-balance text-4xl font-bold tracking-tight text-ink-950 sm:text-5xl">
-              Four steps. <span className="text-brand-500">No fee</span> at any
-              one of them.
+              Four steps. <span className="text-brand-500">Zero guesswork</span>{" "}
+              from idea to launch.
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-pretty text-lg text-ink-600 sm:text-xl">
-              Getting started takes an email address and your own account of
-              what you can do.
+              A clear, proven process that keeps your project on time, on
+              budget and on target.
             </p>
           </div>
         </Reveal>

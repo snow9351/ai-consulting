@@ -18,7 +18,7 @@
 vite.config.ts.timestamp-*
 vite.config.js.timestamp-*
 
-# Local account store (see app/lib/auth.server.ts)
+# Contact form submissions (see app/lib/contact.server.ts)
 /data/
 
 # Environment variables

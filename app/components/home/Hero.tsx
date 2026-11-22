@@ -7,7 +7,7 @@ import {
   ArrowRight,
   Check,
   Compass,
-  Search,
+  RocketSolid,
   ShieldSolid,
 } from "~/components/ui/icons";
 import { COMMITMENTS } from "~/content/mission";
@@ -137,16 +137,16 @@ export function Hero() {
             <Reveal>
               <span className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50/80 px-4 py-2 text-sm font-semibold text-brand-700 shadow-[0_4px_18px_-6px_rgb(53_106_230/0.35)] backdrop-blur-sm">
                 <ShieldSolid className="h-4.5 w-4.5 text-brand-600" />
-                Opportunity has no borders
+                Software Development &amp; Consulting
               </span>
             </Reveal>
 
             <Reveal delay={80}>
               <h1 className="mt-7 text-balance text-[2.25rem] font-bold leading-[1.05] tracking-[-0.035em] text-ink-950 sm:text-5xl lg:text-[3.75rem]">
-                Your <span className="text-brand-500">Future</span>{" "}
-                Shouldn&rsquo;t Depend on Your{" "}
+                We Build <span className="text-brand-500">Software</span>{" "}
+                That Moves Your{" "}
                 <span className="relative inline-block whitespace-nowrap">
-                  Bank Account.
+                  Business Forward.
                   {/* Hand-drawn underline that draws itself in on load. */}
                   <svg
                     viewBox="0 0 320 20"
@@ -170,31 +170,31 @@ export function Hero() {
 
             <Reveal delay={140}>
               <p className="mt-8 max-w-xl text-pretty text-lg font-medium leading-relaxed text-ink-700 sm:text-xl">
-                Your talent deserves an opportunity. Meet people around the
-                world, discover remote work, and build your future without
-                financial barriers.
+                HUMNOVA designs, builds and scales web, mobile, cloud and AI
+                products — and gives you the technical advice to make the right
+                decisions, from first idea to production.
               </p>
             </Reveal>
 
             <Reveal delay={200}>
               <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:items-center">
                 <Button
-                  to="/join"
+                  to="/contact"
                   size="lg"
                   className="hero-cta-glow h-14! px-8! font-semibold!"
                 >
-                  <Search className="h-5 w-5" />
-                  Find Opportunities — Free
+                  <RocketSolid className="h-5 w-5" />
+                  Start Your Project
                   <ArrowRight className="h-4 w-4" />
                 </Button>
                 <Button
-                  to="/#mission"
+                  to="/#why"
                   variant="outline"
                   size="lg"
                   className="h-14! px-8! font-semibold!"
                 >
                   <Compass className="h-5 w-5 text-brand-600" />
-                  Explore Our Mission
+                  Explore Our Services
                   <ArrowRight className="h-4 w-4" />
                 </Button>
               </div>

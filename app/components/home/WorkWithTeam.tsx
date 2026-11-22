@@ -3,12 +3,12 @@
 import { Button } from "~/components/ui/Button";
 import { Container } from "~/components/ui/Container";
 import { Reveal } from "~/components/ui/Reveal";
-import { ArrowRight, Globe, NoFee, Scale, Shield, Users } from "~/components/ui/icons";
+import { ArrowRight, Clock, Globe, NoFee, Shield, Users } from "~/components/ui/icons";
 import type { FlagProps } from "~/components/ui/flags";
 import { FlagCA, FlagEU, FlagUK, FlagUS } from "~/components/ui/flags";
 import { SITE } from "~/lib/site";
 
-/** Where the work comes from. Add a flag to ~/components/ui/flags to extend. */
+/** Regions we deliver for. Add a flag to ~/components/ui/flags to extend. */
 const COUNTRIES: { name: string; Flag: ComponentType<FlagProps> }[] = [
   { name: "United States", Flag: FlagUS },
   { name: "Canada", Flag: FlagCA },
@@ -25,36 +25,32 @@ interface Point {
 const HOW_WE_WORK: Point[] = [
   {
     icon: Users,
-    title: "Humans read what you send",
-    body: "Not a keyword filter, not an automated score. This opportunity is open to anyone who is trustworthy and not a scammer.",
+    title: "Experts on every project",
+    body: "Experienced engineers and designers lead your project, with one point of contact from kickoff to launch.",
   },
   {
     icon: Globe,
-    title: "Where you are from decides nothing",
-    body: "We work across time zones by default. Your country is a logistics detail, not a qualification.",
+    title: "Working in your time zone",
+    body: "Our distributed team overlaps with your working hours, so questions are answered and decisions made fast.",
   },
 ];
 
-/**
- * Stated as things we will never do, not as a list of rules for third-party
- * posters. The team here is the one offering the work, so these are promises
- * we are making about ourselves rather than conditions we police in others.
- */
+/** What every client can count on. */
 const NEVER: Point[] = [
   {
     icon: NoFee,
-    title: "No fee to be seen",
-    body: "We will never charge you to join, to be seen, or to be considered.",
+    title: "Transparent pricing",
+    body: "Clear estimates up front and no hidden costs — you always know what you are paying for.",
   },
   {
     icon: Shield,
-    title: "No deposits, ever",
-    body: "We will never ask you for a deposit, a fee, or money for equipment or training.",
+    title: "Secure, tested code",
+    body: "Code reviews, automated testing and security best practices on every single release.",
   },
   {
-    icon: Scale,
-    title: "No ranking by background",
-    body: "We will never rank you by your passport, your school, or who you happen to know.",
+    icon: Clock,
+    title: "On-time delivery",
+    body: "Agile sprints and regular demos keep your project predictable and on schedule.",
   },
 ];
 
@@ -160,13 +156,13 @@ export function WorkWithTeam() {
                   Welcome to our Team!
                 </h2>
                 <p className="mx-auto mt-5 max-w-xs text-pretty text-sm leading-relaxed text-ink-700">
-                  The opportunity comes from us — a team, not a job board — and
-                  we respond quickly without delay.
+                  One team for strategy, design, engineering and support — and
+                  a quick reply whenever you need us.
                 </p>
                 <div className="mt-7">
-                  <Button to="/join" size="md" className="px-6!">
+                  <Button to="/contact" size="md" className="px-6!">
                     <ArrowRight className="h-4 w-4 -rotate-45" />
-                    Tell us what you can do
+                    Start a project
                   </Button>
                 </div>
               </div>
@@ -191,11 +187,11 @@ export function WorkWithTeam() {
             <div className="relative mt-20">
               <Reveal>
                 <h3 className="text-balance text-2xl font-medium leading-[1.25] tracking-[-0.02em] text-ink-950 sm:text-3xl">
-                  A team, not a job board.
+                  A partner, not just a vendor.
                 </h3>
                 <p className="mt-4 max-w-md text-pretty text-sm leading-relaxed text-ink-600">
-                  The opportunity comes from us. That is the whole difference —
-                  no middlemen, and a real reply.
+                  We don&rsquo;t just write code to a spec. We help you decide
+                  what to build — then we build it right.
                 </p>
               </Reveal>
 
@@ -224,8 +220,8 @@ export function WorkWithTeam() {
                   Why we&rsquo;re great to work with
                 </h3>
                 <p className="mt-6 max-w-md text-pretty text-sm leading-relaxed text-ink-300">
-                  Free to join, and free to stay. These are the things we will
-                  never do — the reason you can trust what you find here.
+                  Clear process, honest communication and engineering you can
+                  rely on. Here is what every client can expect from us.
                 </p>
               </Reveal>
 
@@ -249,20 +245,17 @@ export function WorkWithTeam() {
               <div className="relative grid overflow-hidden rounded-xl bg-[#18233f] sm:grid-cols-[1.5fr_1fr]">
                 <div className="p-7 sm:p-9">
                   <h3 className="text-balance text-xl font-medium leading-snug tracking-[-0.01em] sm:text-2xl">
-                    Want to join the {SITE.name} team? Tell us what you can do.
+                    Have a project in mind? Let&rsquo;s build it together with {SITE.name}.
                   </h3>
                   <div className="mt-7">
-                    <Button to="/join" size="sm" className="whitespace-nowrap px-5!">
+                    <Button to="/contact" size="sm" className="whitespace-nowrap px-5!">
                       <ArrowRight className="h-3.5 w-3.5 -rotate-45" />
-                      Tell us what you can do
+                      Start a project
                     </Button>
                   </div>
-                  {/* Deliberately not "we will find you a job": how many people
-                      we can take on depends on what the team is building, and a
-                      guarantee we cannot keep would make this page dishonest. */}
                   <p className="mt-5 text-[0.7rem] leading-relaxed text-ink-400">
-                    If anyone claiming to be from {SITE.name} asks you for
-                    money, it is not us.
+                    Your first consultation is free — tell us about your idea and
+                    we will reply with next steps.
                   </p>
                 </div>
 

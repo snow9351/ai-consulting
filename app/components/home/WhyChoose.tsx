@@ -5,13 +5,13 @@ import { Container } from "~/components/ui/Container";
 import { Reveal } from "~/components/ui/Reveal";
 import {
   ArrowRight,
-  Document,
+  Bolt,
+  Chat,
+  Compass,
   Globe,
-  GraduationCap,
   Handshake,
-  NoFee,
-  Search,
   Shield,
+  Sparkle,
   Users,
 } from "~/components/ui/icons";
 import { SITE } from "~/lib/site";
@@ -22,49 +22,44 @@ interface Reason {
   body: string;
 }
 
-/**
- * Every item here restates a commitment the site already makes elsewhere —
- * the hero bullets, the employer standards, the funding model. Nothing is a
- * statistic, a testimonial, or a promise of employment, because none of those
- * can be made honestly before launch.
- */
+/** What we build and advise on. No statistics or client names — add real ones when they can be published. */
 const REASONS: Reason[] = [
   {
-    icon: Search,
-    title: "Free for Job Seekers — Forever",
-    body: "You will never pay to build a profile, search, or apply. Not a trial, not a limited offer, not a fee at the end.",
-  },
-  {
-    icon: NoFee,
-    title: "No Upfront Payments, Ever",
-    body: "No deposits, no processing fees, no equipment charges. Any listing that asks you for money is removed.",
-  },
-  {
     icon: Globe,
-    title: "Open to Every Nationality",
-    body: "No country is excluded, and no passport ranks above another. Where you were born is not a filter here.",
+    title: "Web Application Development",
+    body: "Fast, scalable web apps, portals and SaaS platforms built on modern frameworks and clean architecture.",
   },
   {
-    icon: Document,
-    title: "The Terms Are on the Table First",
-    body: "Compensation and requirements are stated before you apply — or clearly marked as undisclosed, so you can decide.",
+    icon: Bolt,
+    title: "Mobile App Development",
+    body: "Native and cross-platform iOS and Android apps that feel fast, look great and are easy to maintain.",
   },
   {
-    icon: GraduationCap,
-    title: "Judged on What You Can Do",
-    body: "Skills, languages, and availability lead every profile. Not your school, your network, or who you happen to know.",
+    icon: Shield,
+    title: "Cloud & DevOps",
+    body: "Cloud architecture, CI/CD pipelines and infrastructure that scale reliably, securely and cost-effectively.",
   },
   {
-    icon: Handshake,
-    title: "Paid for by Employers, Not by You",
-    body: "Revenue comes from employer tools and subscriptions. The people looking for work are never the ones charged.",
+    icon: Sparkle,
+    title: "AI Agents & Automation",
+    body: "AI-powered features, intelligent agents and workflow automation that save time and unlock new value.",
+  },
+  {
+    icon: Compass,
+    title: "Product & UI/UX Design",
+    body: "Research-driven product design, from user flows and wireframes to polished, accessible interfaces.",
+  },
+  {
+    icon: Chat,
+    title: "Technology Consulting",
+    body: "Architecture reviews, technical audits and roadmaps that help you make confident technology decisions.",
   },
 ];
 
 const PILLARS: Reason[] = [
-  { icon: Shield, title: "100% Free for Job Seekers", body: "" },
-  { icon: Users, title: "A Global & Inclusive Platform", body: "" },
-  { icon: Handshake, title: "Fair and Transparent Hiring", body: "" },
+  { icon: Shield, title: "Secure & Reliable Delivery", body: "" },
+  { icon: Users, title: "Dedicated Expert Team", body: "" },
+  { icon: Handshake, title: "Long-Term Partnership", body: "" },
 ];
 
 export function WhyChoose() {
@@ -76,23 +71,23 @@ export function WhyChoose() {
           <div className="mx-auto max-w-4xl text-center">
             <p className="flex items-center justify-center gap-4 text-xs font-semibold uppercase tracking-[0.3em] text-brand-600 sm:text-sm">
               <span aria-hidden="true" className="h-px w-10 bg-brand-300 sm:w-24" />
-              Join Our Global Team
+              Our Services
               <span aria-hidden="true" className="h-px w-10 bg-brand-300 sm:w-24" />
             </p>
 
             <h2 className="mt-5 text-4xl font-bold tracking-tight text-ink-950 sm:text-5xl lg:text-6xl">
-              Why Choose <span className="text-brand-600">{SITE.name}</span>{" "}
-              Consultants?
+              What <span className="text-brand-600">{SITE.name}</span>{" "}
+              Builds for You
             </h2>
 
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink-600 sm:text-xl">
-              Not a promise of a job — a promise about how you will be treated
-              while you look for one.
+              End-to-end software development and consulting, tailored to your
+              goals — from a single feature to a complete platform.
             </p>
 
             <div className="mt-8 flex justify-center">
-              <Button to="/join" size="lg">
-                Join Our Global Team
+              <Button to="/contact" size="lg">
+                Discuss Your Project
                 <ArrowRight className="h-4 w-4" />
               </Button>
             </div>

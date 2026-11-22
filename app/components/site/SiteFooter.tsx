@@ -9,9 +9,6 @@ export function SiteFooter() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_2fr]">
           <div className="max-w-sm">
             <Logo />
-            <p className="mt-3 text-sm font-medium tracking-wide text-brand-600">
-              {SITE.nameOrigin}
-            </p>
             <p className="mt-4 text-[0.9375rem] leading-relaxed text-ink-600">
               {SITE.description}
             </p>
@@ -52,11 +49,6 @@ export function SiteFooter() {
           </p>
         </div>
 
-        <p className="mt-6 max-w-3xl text-xs leading-relaxed text-ink-500">
-          {SITE.name} is a platform for discovering opportunities. We do not
-          guarantee employment, income, or selection for any role. Opportunities
-          depend on employer decisions and availability.
-        </p>
       </div>
     </footer>
   );

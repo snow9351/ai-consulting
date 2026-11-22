@@ -77,20 +77,20 @@ const PILLARS: Pillar[] = [
   {
     mark: ScaleMark,
     disc: "bg-gradient-to-br from-[#dbe8ff] to-[#c4d8fd] text-[#1f5fe0]",
-    title: "Equal dignity",
-    body: "A person's worth is not a number in an account. Everyone here is treated as a professional with something real to offer.",
+    title: "Engineering excellence",
+    body: "Modern architecture, clean code and automated testing keep your software fast, secure and easy to evolve.",
   },
   {
     mark: PeopleMark,
     disc: "bg-gradient-to-br from-[#dcf7ea] to-[#c2efd8] text-[#1fa35c]",
-    title: "Fair access",
-    body: "No membership fee, no paid tier that jumps the queue. The people with the least money get the same access as everyone else.",
+    title: "Client partnership",
+    body: "We work as an extension of your team, with clear communication and shared ownership of every milestone.",
   },
   {
     mark: GrowthMark,
     disc: "bg-gradient-to-br from-[#f1e6fe] to-[#e2cffc] text-[#7c2de0]",
-    title: "Human potential",
-    body: "Skills, character, motivation, and potential decide who is right for a role — not a passport or a bank balance.",
+    title: "Measurable growth",
+    body: "We focus on outcomes you can measure — faster releases, lower costs and better experiences for your users.",
   },
 ];
 
@@ -159,15 +159,15 @@ export function Mission() {
             <Reveal>
               <span className="inline-flex items-center gap-2.5 rounded-full bg-brand-100/80 px-5 py-2 text-base font-semibold text-brand-600">
                 <span aria-hidden="true" className="h-3 w-3 rounded-full bg-brand-600" />
-                Our Mission
+                About Us
               </span>
 
               <h2 className="mt-7 text-balance text-4xl font-bold leading-[1.06] tracking-[-0.03em] text-ink-950 sm:text-5xl lg:text-[3.6rem]">
-                Human beings create money. Money should{" "}
+                We turn complex ideas into software that{" "}
                 <span className="text-brand-600">
-                  serve{" "}
+                  delivers{" "}
                   <span className="relative inline-block whitespace-nowrap">
-                    human beings.
+                    real results.
                     <svg
                       viewBox="0 0 300 20"
                       preserveAspectRatio="none"
@@ -191,17 +191,17 @@ export function Mission() {
             <Reveal delay={100}>
               <div className="mt-10 max-w-xl space-y-6 text-lg leading-relaxed text-ink-700">
                 <p>
-                  Millions of capable people never reach a good job — not
-                  because they lack ability, but because they lack money,
-                  contacts, formal credentials, or a network that reaches past
-                  their own border.
+                  We are a team of software engineers, designers and technical
+                  consultants. We partner with startups and established
+                  businesses to plan, build and modernise the software they
+                  depend on.
                 </p>
                 <p>
                   <strong className="font-semibold text-ink-900">HUMNOVA</strong>{" "}
-                  exists to open that door. We connect people who have
-                  opportunities with people who need them, and we remove the
-                  cost of trying. Your financial situation should never define
-                  your future.
+                  combines hands-on engineering with strategic consulting, so
+                  every line of code serves a business goal. Whether you need a
+                  new product, a rescue for an existing one, or advice on your
+                  next step, we are ready to help.
                 </p>
               </div>
             </Reveal>
@@ -209,11 +209,11 @@ export function Mission() {
             <Reveal delay={160}>
               <div className="mt-10">
                 <Button
-                  to="/join"
+                  to="/contact"
                   size="lg"
                   className="h-14! px-9! text-lg! font-semibold! shadow-[0_14px_30px_-10px_rgb(42_88_208/0.6)]!"
                 >
-                  Build a Better Future
+                  Work With Us
                   <ArrowRight className="h-5 w-5" />
                 </Button>
               </div>

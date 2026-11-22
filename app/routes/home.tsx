@@ -1,5 +1,6 @@
 import type { Route } from "./+types/home";
 import { Hero } from "~/components/home/Hero";
+import { TechMarquee } from "~/components/home/TechMarquee";
 import { Mission } from "~/components/home/Mission";
 import { HowItWorks } from "~/components/home/HowItWorks";
 import { WhyChoose } from "~/components/home/WhyChoose";
@@ -23,6 +24,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TechMarquee />
       <Mission />
       <HowItWorks />
       <WhyChoose />
