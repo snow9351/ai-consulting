@@ -5,43 +5,78 @@ import { Button } from "~/components/ui/Button";
 import { Container } from "~/components/ui/Container";
 import { Reveal } from "~/components/ui/Reveal";
 import { DotMapBackground } from "~/components/ui/DotMapBackground";
-import { ArrowRight, Mail, Phone } from "~/components/ui/icons";
+import { ArrowRight, Chat, Mail } from "~/components/ui/icons";
 import { MARK_SRC } from "~/components/site/Logo";
 import { FAQS } from "~/content/faq";
 import { CONTACT, SITE } from "~/lib/site";
 import { CollabLaptop } from "./CollabLaptop";
 
-/**
- * Channels in the bubble, top to bottom: a pyramid that widens row by row.
- * Logos live in public/images/tools. Video calls open the consultation form,
- * the phone row dials us, and Slack/WhatsApp open the contact form until we
- * publish those accounts.
- */
-type Channel = { name: string; hint: string; href: string; logo?: string; Icon?: ComponentType<{ className?: string }> };
-const CHANNELS: Channel[] = [
-  { name: "Zoom", hint: "Book a Zoom call", href: "/contact?topic=consulting", logo: "zoom" },
-  { name: "Google Meet", hint: "Book a Google Meet call", href: "/contact?topic=consulting", logo: "googlemeet" },
-  { name: "Phone", hint: `Call us on ${CONTACT.phone}`, href: CONTACT.phoneHref, Icon: Phone },
-  { name: "Slack", hint: "Work with us on Slack", href: "/contact", logo: "slack" },
-  { name: "WhatsApp", hint: "Chat with us on WhatsApp", href: "/contact", logo: "whatsapp" },
-];
-/** Row widths, top to bottom: the pyramid shape. */
-const PYRAMID = ["46%", "60%", "74%", "88%", "100%"];
+/** Zoom-style mark: a blue rounded square with a white video camera. */
+function ZoomMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 32" className={className} aria-hidden="true" focusable="false">
+      <rect width="32" height="32" rx="8" fill="#0b5cff" />
+      <rect x="6.5" y="10.5" width="13" height="11" rx="2.6" fill="#fff" />
+      <path d="M20.8 14.2l4.7-3.1v9.8l-4.7-3.1Z" fill="#fff" />
+    </svg>
+  );
+}
 
-function ChannelRow({ channel, index }: { channel: Channel; index: number }) {
-  const { name, hint, href, logo, Icon } = channel;
+/** A solid handset, in the site's navy. */
+function PhoneMark({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+      <path
+        fill="#16233f"
+        d="M6.6 2.8c.6-.4 1.4-.3 1.9.3l2.2 2.9c.5.6.4 1.5-.1 2l-1.3 1.3c-.3.3-.3.7-.2 1 .9 1.9 2.6 3.6 4.5 4.5.3.2.7.1 1-.2l1.3-1.3c.6-.6 1.4-.6 2-.1l2.9 2.2c.6.5.7 1.3.3 1.9l-1.2 1.8c-.7 1-1.9 1.6-3.1 1.4C10.6 19.7 4.3 13.4 3.5 7.2c-.2-1.2.4-2.4 1.4-3.1Z"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Ways to talk to us, shown as round badges in a pentagon: Zoom on top,
+ * Phone and Google Meet either side, Slack and WhatsApp below, evenly spaced
+ * on a circle that slowly turns. `angle` is each badge's starting position
+ * (degrees, 0 = right, -90 = top). Video calls open the
+ * consultation form, Phone dials us, and Slack/WhatsApp open the contact
+ * form until those accounts are published.
+ */
+type Channel = {
+  name: string;
+  hint: string;
+  href: string;
+  angle: number;
+  logo?: string;
+  Mark?: ComponentType<{ className?: string }>;
+};
+const CHANNELS: Channel[] = [
+  { name: "Zoom", hint: "Book a Zoom call", href: "/contact?topic=consulting", angle: -90, Mark: ZoomMark },
+  { name: "Google Meet", hint: "Book a Google Meet call", href: "/contact?topic=consulting", angle: -18, logo: "googlemeet" },
+  { name: "Phone", hint: `Call us on ${CONTACT.phone}`, href: CONTACT.phoneHref, angle: 198, Mark: PhoneMark },
+  { name: "Slack", hint: "Work with us on Slack", href: "/contact", angle: 126, logo: "slack" },
+  { name: "WhatsApp", hint: "Chat with us on WhatsApp", href: "/contact", angle: 54, logo: "whatsapp" },
+];
+
+function ChannelBadge({ channel, index }: { channel: Channel; index: number }) {
+  const { name, hint, href, logo, Mark, angle } = channel;
+  const radius = 36; // % of the badge area
+  const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+  const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
   const className =
-    "chat-spread group mx-auto flex h-9 items-center justify-center gap-2 rounded-full border border-ink-100 bg-white px-3 text-sm font-semibold text-ink-800 shadow-[0_8px_18px_-14px_rgb(11_31_79/0.6)] transition-[border-color,background-color,color,translate] duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:bg-brand-50 hover:text-brand-700";
-  const style = { width: PYRAMID[index], animationDelay: `${900 + index * 130}ms` };
+    "channel-badge absolute flex h-16 w-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 border-brand-200 bg-white text-[0.625rem] font-semibold text-ink-900 shadow-[0_8px_20px_-8px_rgb(53_106_230/0.55),0_0_0_4px_rgb(219_231_255/0.6)] transition-[border-color,box-shadow] duration-300 hover:border-brand-500 hover:shadow-[0_12px_24px_-8px_rgb(53_106_230/0.75),0_0_0_6px_rgb(219_231_255/0.9)]";
+  const style = { left: `${x}%`, top: `${y}%`, animationDelay: `${900 + index * 140}ms` };
+  // The ring turns; this inner part turns back the other way, so logos and
+  // names stay upright.
   const content = (
-    <>
-      {logo ? (
-        <img src={`/images/tools/${logo}.svg`} alt="" width={18} height={18} className="h-4.5 w-4.5 shrink-0" />
-      ) : Icon ? (
-        <Icon className="h-4.5 w-4.5 shrink-0 text-brand-600" />
-      ) : null}
-      <span className="truncate">{name}</span>
-    </>
+    <span className="channel-upright flex flex-col items-center gap-0.5">
+      {Mark ? (
+        <Mark className="h-6 w-6" />
+      ) : (
+        <img src={`/images/tools/${logo}.svg`} alt="" width={24} height={24} className="h-6 w-6" />
+      )}
+      <span className="leading-none whitespace-nowrap">{name}</span>
+    </span>
   );
   return (
     <li>
@@ -62,7 +97,7 @@ function ChannelRow({ channel, index }: { channel: Channel; index: number }) {
 function ChatBubble() {
   return (
     <div className="chat-pop relative origin-bottom-left">
-      <div className="rounded-[1.6rem] border border-white bg-white/95 p-4 shadow-[0_30px_60px_-28px_rgb(11_31_79/0.55)] backdrop-blur-md sm:p-5">
+      <div className="rounded-[1.4rem] border border-white bg-white/95 p-4 shadow-[0_30px_60px_-28px_rgb(11_31_79/0.55)] backdrop-blur-md">
         <div className="flex items-center gap-2.5">
           <span className="relative inline-flex h-9 w-9 shrink-0">
             <img src={MARK_SRC} alt="" width={100} height={100} className="h-9 w-9" />
@@ -75,21 +110,35 @@ function ChatBubble() {
         </div>
 
         <div className="chat-bubble mt-3.5">
-          <p className="text-[1.0625rem] font-bold text-ink-950">Still have a question?</p>
-          <p className="mt-0.5 text-sm leading-relaxed text-ink-600">
+          <p className="text-base font-bold text-ink-950">Still have a question?</p>
+          <p className="mt-0.5 text-[0.8125rem] leading-relaxed text-ink-600">
             Talk to us wherever suits you best.
           </p>
         </div>
 
-        {/* Channels as a pyramid: each row spreads out after the one above. */}
-        <ul aria-label="Ways to talk to us" className="mt-3.5 space-y-1.5">
-          {CHANNELS.map((channel, index) => (
-            <ChannelRow key={channel.name} channel={channel} index={index} />
-          ))}
-        </ul>
+        {/* Channels: round badges in a pentagon, with soft rings spreading
+            out behind them. */}
+        <div className="channel-ring relative mx-auto mt-1 aspect-square w-[92%]">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+            {[0, 1, 2].map((ring) => (
+              <span
+                key={ring}
+                className="channel-ripple absolute inset-[4%] rounded-full border-2 border-brand-300/70 shadow-[0_0_24px_rgb(53_106_230/0.25)]"
+                style={{ animationDelay: `${ring * 1.4}s` }}
+              />
+            ))}
+          </div>
+          <ul aria-label="Ways to talk to us" className="channel-orbit absolute inset-0">
+            {CHANNELS.map((channel, index) => (
+              <ChannelBadge key={channel.name} channel={channel} index={index} />
+            ))}
+          </ul>
+        </div>
 
         <div className="chat-bubble chat-bubble-3 mt-4 flex items-center gap-2">
-          <Button to="/contact" variant="primary" size="sm" className="flex-1 justify-center whitespace-nowrap hover:scale-[1.02]">
+          <Button to="/contact" variant="primary" size="sm" className="h-10! flex-1 justify-center gap-2.5 whitespace-nowrap hover:scale-[1.02]">
+            <Chat className="h-4.5 w-4.5" />
+            <span aria-hidden="true" className="h-5 w-px bg-white/50" />
             Send a message
             <ArrowRight className="h-4 w-4" />
           </Button>
@@ -97,9 +146,9 @@ function ChatBubble() {
             href={`mailto:${CONTACT.email}`}
             aria-label={`Email us at ${CONTACT.email}`}
             title={`Email us at ${CONTACT.email}`}
-            className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-brand-100 bg-white text-brand-600 transition-colors duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-white"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-100 bg-white text-brand-600 shadow-[0_8px_20px_-12px_rgb(53_106_230/0.7)] transition-colors duration-300 hover:border-brand-500 hover:bg-brand-500 hover:text-white"
           >
-            <Mail className="h-4 w-4" />
+            <Mail className="h-4.5 w-4.5" />
           </a>
         </div>
       </div>
@@ -219,7 +268,7 @@ export function Faq() {
               <h2 className="text-balance text-3xl font-bold tracking-[-0.03em] text-ink-950 sm:text-[2.5rem] sm:leading-[1.1]">
                 Questions, <span className="text-brand-500">answered.</span>
               </h2>
-              <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-ink-600 lg:max-w-[20rem] xl:max-w-[22rem]">
+              <p className="mt-5 max-w-md text-pretty text-lg leading-relaxed text-ink-600 lg:max-w-[18rem] xl:max-w-[21rem]">
                 What clients usually ask before working with us. Don&rsquo;t see yours? Just ask.
               </p>
             </Reveal>
@@ -228,13 +277,13 @@ export function Faq() {
                 to the right of the heading on large ones. */}
             <Reveal
               delay={120}
-              className="relative z-10 mt-8 ml-auto w-full max-w-[21rem] lg:absolute lg:top-[5.75rem] lg:right-0 lg:mt-0 lg:w-[19.5rem]"
+              className="relative z-10 mt-8 ml-auto w-full max-w-[18.5rem] lg:absolute lg:top-[5.75rem] lg:right-0 lg:mt-0 lg:w-[17.5rem]"
             >
               <ChatBubble />
             </Reveal>
 
             {/* The 3D laptop, with VS Code on screen. */}
-            <Reveal delay={80} className="relative mt-4 lg:mt-[17rem]">
+            <Reveal delay={80} className="relative mt-4 lg:mt-[18rem]">
               <div className="pointer-events-none lg:-ml-6">
                 <CollabLaptop className="w-full" />
               </div>

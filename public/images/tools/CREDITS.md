@@ -3,7 +3,7 @@
 Used in the FAQ chat bubble (app/components/home/Faq.tsx).
 
 - `slack.svg`: [Devicon](https://github.com/devicons/devicon) v2.16.0 — MIT License.
-- `whatsapp.svg`, `zoom.svg`, `googlemeet.svg`:
+- `whatsapp.svg`, `googlemeet.svg`:
   [Simple Icons](https://github.com/simple-icons/simple-icons) v13.21.0 — CC0 1.0,
   filled with each brand's colour.
 
