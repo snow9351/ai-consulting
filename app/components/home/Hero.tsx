@@ -170,7 +170,7 @@ export function Hero() {
 
             <Reveal delay={140}>
               <p className="mt-8 max-w-xl lg:mt-6 text-pretty text-lg font-medium leading-relaxed text-ink-700 sm:text-xl">
-                JRATI designs, builds and scales web, mobile, cloud and AI
+                JRA designs, builds and scales web, mobile, cloud and AI
                 products — and gives you the technical advice to make the right
                 decisions, from first idea to production.
               </p>

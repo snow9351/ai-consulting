@@ -18,7 +18,7 @@ export default function EmployersRoute() {
       phase="Phase 4"
       eyebrow="For Companies"
       title="Employer accounts are being built."
-      description="Businesses, founders, and project owners will be able to post opportunities and search talent here. Employer tooling is where JRATI earns its revenue — never from job seekers."
+      description="Businesses, founders, and project owners will be able to post opportunities and search talent here. Employer tooling is where JRA earns its revenue — never from job seekers."
       planned={[
         "Company and project-owner profiles",
         "Post opportunities with required skills, pay, and expectations",

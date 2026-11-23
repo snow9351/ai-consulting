@@ -12,7 +12,7 @@ export interface Faq {
 
 export const FAQS: Faq[] = [
   {
-    question: "What does JRATI do?",
+    question: "What does JRA do?",
     answer:
       "We are a software development and consulting company. We design, build and scale web applications, mobile apps, cloud infrastructure and AI agents and automation, and we offer product and UI/UX design and technology consulting.",
   },

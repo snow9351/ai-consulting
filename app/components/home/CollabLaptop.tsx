@@ -33,7 +33,7 @@ type Token = [text: string, color: string];
 
 /** The code on screen, one array of coloured tokens per line. */
 const CODE: Token[][] = [
-  [["import", C.keyword], [" { ", C.plain], ["Team", C.variable], [" } ", C.plain], ["from", C.keyword], [' "@jrati/core"', C.string], [";", C.plain]],
+  [["import", C.keyword], [" { ", C.plain], ["Team", C.variable], [" } ", C.plain], ["from", C.keyword], [' "@jra/core"', C.string], [";", C.plain]],
   [["import", C.keyword], [" { ", C.plain], ["deploy", C.variable], [" } ", C.plain], ["from", C.keyword], [' "./deploy"', C.string], [";", C.plain]],
   [["import", C.keyword], [" ", C.plain], ["type", C.keyword], [" { ", C.plain], ["Idea", C.variable], [" } ", C.plain], ["from", C.keyword], [' "~/types"', C.string], [";", C.plain]],
   [],
@@ -201,7 +201,7 @@ function Screen({ className }: { className: string }) {
         <circle cx="76.1" cy="22.5" r="1.6" fill="#28c840" />
         <rect x="170" y="19.8" width="80" height="5.6" rx="1.4" fill="#3c3c3c" />
         <text x="210" y="24" fontSize="3.6" fill="#a9a9a9" textAnchor="middle">
-          launch.ts — jrati-app
+          launch.ts — jra-app
         </text>
 
         {/* Activity bar */}
@@ -226,7 +226,7 @@ function Screen({ className }: { className: string }) {
           EXPLORER
         </text>
         <path d="M74.6 37.6l1.3 1.3 1.3-1.3" fill="none" stroke="#c5c5c5" strokeWidth="0.6" />
-        <text x="78.6" y="39.6" fontSize="3.3" fontWeight="700" fill="#cccccc">JRATI-APP</text>
+        <text x="78.6" y="39.6" fontSize="3.3" fontWeight="700" fill="#cccccc">JRA-APP</text>
         {TREE.map((row, i) => {
           const y = 45.6 + i * 5.85;
           const x = 76 + row.depth * 4.4;
@@ -366,19 +366,19 @@ function Screen({ className }: { className: string }) {
         <text x="352" y="160.6" fontSize="3.3" fill="#8b8b8b" textAnchor="end">zsh  +  ⌄</text>
         <g fontFamily={MONO} fontSize="4.2">
           <text x="146" y="169.5" fill="#cccccc" xmlSpace="preserve">
-            <tspan fill="#4ec9b0">~/jrati-app</tspan> <tspan fill="#c586c0">main</tspan> $ npm run test
+            <tspan fill="#4ec9b0">~/jra-app</tspan> <tspan fill="#c586c0">main</tspan> $ npm run test
           </text>
           <text x="146" y="176" fill="#cccccc" xmlSpace="preserve">
             <tspan fill="#23d18b"> PASS </tspan> 128 tests in 24 suites
           </text>
           <text x="146" y="182.5" fill="#cccccc" xmlSpace="preserve">
-            <tspan fill="#4ec9b0">~/jrati-app</tspan> <tspan fill="#c586c0">main</tspan> $ npm run deploy
+            <tspan fill="#4ec9b0">~/jra-app</tspan> <tspan fill="#c586c0">main</tspan> $ npm run deploy
           </text>
           <text x="146" y="189" fill="#cccccc" xmlSpace="preserve">
             <tspan fill="#23d18b">✓</tspan> Build complete · <tspan fill="#23d18b">✓</tspan> Live in production
           </text>
           <text x="146" y="195.5" fill="#cccccc" xmlSpace="preserve">
-            <tspan fill="#4ec9b0">~/jrati-app</tspan> <tspan fill="#c586c0">main</tspan> $ ▋
+            <tspan fill="#4ec9b0">~/jra-app</tspan> <tspan fill="#c586c0">main</tspan> $ ▋
           </text>
         </g>
 

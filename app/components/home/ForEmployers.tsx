@@ -43,7 +43,7 @@ export function ForEmployers() {
               </h2>
               <p className="mt-5 text-pretty text-lg leading-relaxed text-ink-600">
                 Need extra hands or a complete product team? Extend your
-                in-house capacity with JRATI engineers who plug into your
+                in-house capacity with JRA engineers who plug into your
                 tools, processes and culture from day one.
               </p>
             </Reveal>

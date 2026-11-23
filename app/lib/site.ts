@@ -5,12 +5,12 @@
  */
 
 export const SITE = {
-  name: "JRATI",
+  name: "JRA",
   primaryMessage: "Software that moves your business forward.",
   secondaryMessage: "Engineering and consulting, from first idea to production.",
   philosophy: "Great software starts with understanding the business behind it.",
   description:
-    "JRATI is a software development and consulting company. We design, build and scale web, mobile, cloud and AI products for businesses around the world.",
+    "JRA is a software development and consulting company. We design, build and scale web, mobile, cloud and AI products for businesses around the world.",
 } as const;
 
 export interface NavLink {

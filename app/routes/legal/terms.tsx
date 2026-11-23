@@ -7,7 +7,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "The terms that will govern use of JRATI. The full terms are being prepared.",
+        "The terms that will govern use of JRA. The full terms are being prepared.",
     },
   ];
 }
@@ -19,7 +19,7 @@ export default function TermsRoute() {
       title="Terms of Service"
       description="The full terms will be published before accounts open. They are being drafted around the points below, which are not up for negotiation."
       planned={[
-        "JRATI is a discovery platform, not an employer or a recruiter",
+        "JRA is a discovery platform, not an employer or a recruiter",
         "We do not guarantee employment, selection, or any level of income",
         "Job seekers are never charged — the platform is funded by employers",
         "Accounts that demand payment from job seekers are removed",

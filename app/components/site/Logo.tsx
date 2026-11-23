@@ -6,7 +6,7 @@ export interface LogoProps {
   className?: string;
 }
 
-/** The JRATI mark: red chevron star on a dark rounded square (SVG). */
+/** The JRA mark: red chevron star on a dark rounded square (SVG). */
 export const MARK_SRC = "/images/brand/jrati-mark.svg";
 
 /**

@@ -9,7 +9,7 @@ export function meta() {
     {
       name: "description",
       content:
-        "JRATI is free for job seekers — to join, to build a profile, and to apply. Accounts open in Phase 5.",
+        "JRA is free for job seekers — to join, to build a profile, and to apply. Accounts open in Phase 5.",
     },
   ];
 }
