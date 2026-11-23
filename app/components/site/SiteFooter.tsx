@@ -1,6 +1,12 @@
 import { Link } from "react-router";
-import { FOOTER_NAV, SITE } from "~/lib/site";
+import { CONTACT, FOOTER_NAV, SITE } from "~/lib/site";
+import { LinkedIn, Mail, Phone } from "~/components/ui/icons";
 import { Logo } from "./Logo";
+
+const CHANNELS = [
+  { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, Icon: Mail },
+  { label: "Phone", value: CONTACT.phone, href: CONTACT.phoneHref, Icon: Phone },
+];
 
 export function SiteFooter() {
   return (
@@ -15,6 +21,34 @@ export function SiteFooter() {
             <p className="mt-6 text-sm font-medium text-ink-800">
               {SITE.philosophy}
             </p>
+
+            <ul className="mt-7 space-y-3">
+              {CHANNELS.map(({ label, value, href, Icon }) => (
+                <li key={label}>
+                  <a
+                    href={href}
+                    className="group inline-flex items-center gap-3 text-[0.9375rem] font-medium text-ink-700 transition-colors hover:text-brand-600"
+                  >
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-ink-200 bg-white text-brand-600 transition-colors duration-300 group-hover:border-brand-500 group-hover:bg-brand-500 group-hover:text-white">
+                      <Icon className="h-4.5 w-4.5" />
+                    </span>
+                    <span className="sr-only">{label}: </span>
+                    {value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a
+              href={CONTACT.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${SITE.name} on LinkedIn (opens in a new tab)`}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-[#0a66c2] px-4 py-2 text-sm font-semibold text-white shadow-[0_10px_24px_-14px_rgb(10_102_194/0.8)] transition-[transform,background-color] duration-300 hover:-translate-y-0.5 hover:bg-[#004182]"
+            >
+              <LinkedIn className="h-4.5 w-4.5" />
+              Follow us on LinkedIn
+            </a>
           </div>
 
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3">

@@ -20,12 +20,14 @@ export interface NavLink {
   upcoming?: boolean;
 }
 
-/**
- * Set this to a real inbox and the contact page becomes a working mailto
- * link. Null is deliberate: publishing an address nobody reads is worse than
- * saying plainly that the channel is not open yet.
- */
-export const CONTACT_EMAIL: string | null = null;
+/** Public contact channels, shown in the footer. */
+export const CONTACT = {
+  email: "hello@jrati.tech",
+  phone: "+1 (770) 769-5194",
+  /** The phone number in tel: form (digits only, with country code). */
+  phoneHref: "tel:+17707695194",
+  linkedin: "https://www.linkedin.com/company/jrati/",
+} as const;
 
 export const PRIMARY_NAV: NavLink[] = [
   { label: "About Us", to: "/#mission" },

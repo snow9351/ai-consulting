@@ -206,3 +206,25 @@ export const RocketSolid = ({ className = "h-5 w-5" }: IconProps) => (
     />
   </svg>
 );
+
+export const Mail = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="3" y="5" width="18" height="14" rx="2.5" />
+    <path d="m4 7 8 6 8-6" />
+  </Svg>
+);
+
+export const Phone = (p: IconProps) => (
+  <Svg {...p}>
+    <path d="M6.6 3.5h2.6l1.6 4.2-2 1.4a11 11 0 0 0 6.1 6.1l1.4-2 4.2 1.6v2.6a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.6 5.7a2 2 0 0 1 2-2.2Z" />
+  </Svg>
+);
+
+/** The LinkedIn "in" mark, drawn in the same stroke style as the rest. */
+export const LinkedIn = (p: IconProps) => (
+  <Svg {...p}>
+    <rect x="3" y="3" width="18" height="18" rx="3.5" />
+    <path d="M8 10.5V17M12 17v-6.5M12 13.5a2.5 2.5 0 0 1 5 0V17" />
+    <circle cx="8" cy="7.5" r="0.6" fill="currentColor" />
+  </Svg>
+);

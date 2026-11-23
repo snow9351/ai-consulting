@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, type ComponentType } from "react";
-import { data, useFetcher } from "react-router";
+import { data, useFetcher, useSearchParams } from "react-router";
 
 import type { Route } from "./+types/contact";
 import { Container } from "~/components/ui/Container";
@@ -343,7 +343,12 @@ function ContactForm({ topic }: { topic: Topic }) {
 }
 
 export default function Contact() {
-  const [selected, setSelected] = useState<TopicId | null>(null);
+  // /contact?topic=project (or consulting, support) opens with that form ready.
+  const [searchParams] = useSearchParams();
+  const [selected, setSelected] = useState<TopicId | null>(() => {
+    const requested = searchParams.get("topic");
+    return TOPICS.some((candidate) => candidate.id === requested) ? (requested as TopicId) : null;
+  });
   const formRef = useRef<HTMLDivElement>(null);
   const topic = TOPICS.find((candidate) => candidate.id === selected);
 
