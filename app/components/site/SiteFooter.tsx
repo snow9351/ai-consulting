@@ -1,11 +1,10 @@
 import { Link } from "react-router";
 import { CONTACT, FOOTER_NAV, SITE } from "~/lib/site";
-import { LinkedIn, Mail, Phone } from "~/components/ui/icons";
+import { LinkedIn, Mail } from "~/components/ui/icons";
 import { Logo } from "./Logo";
 
 const CHANNELS = [
   { label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, Icon: Mail },
-  { label: "Phone", value: CONTACT.phone, href: CONTACT.phoneHref, Icon: Phone },
 ];
 
 export function SiteFooter() {

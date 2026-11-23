@@ -22,24 +22,11 @@ function ZoomMark({ className }: { className?: string }) {
   );
 }
 
-/** A solid handset, in the site's navy. */
-function PhoneMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
-      <path
-        fill="#16233f"
-        d="M6.6 2.8c.6-.4 1.4-.3 1.9.3l2.2 2.9c.5.6.4 1.5-.1 2l-1.3 1.3c-.3.3-.3.7-.2 1 .9 1.9 2.6 3.6 4.5 4.5.3.2.7.1 1-.2l1.3-1.3c.6-.6 1.4-.6 2-.1l2.9 2.2c.6.5.7 1.3.3 1.9l-1.2 1.8c-.7 1-1.9 1.6-3.1 1.4C10.6 19.7 4.3 13.4 3.5 7.2c-.2-1.2.4-2.4 1.4-3.1Z"
-      />
-    </svg>
-  );
-}
-
 /**
- * Ways to talk to us, shown as round badges in a pentagon: Zoom on top,
- * Phone and Google Meet either side, Slack and WhatsApp below, evenly spaced
- * on a circle that slowly turns. `angle` is each badge's starting position
- * (degrees, 0 = right, -90 = top). Video calls open the
- * consultation form, Phone dials us, and Slack/WhatsApp open the contact
+ * Ways to talk to us, shown as round badges evenly spaced on a circle that
+ * slowly turns: Zoom on top, Google Meet right, WhatsApp below, Slack left.
+ * `angle` is each badge's starting position (degrees, 0 = right, -90 = top).
+ * Video calls open the consultation form; Slack/WhatsApp open the contact
  * form until those accounts are published.
  */
 type Channel = {
@@ -52,10 +39,9 @@ type Channel = {
 };
 const CHANNELS: Channel[] = [
   { name: "Zoom", hint: "Book a Zoom call", href: "/contact?topic=consulting", angle: -90, Mark: ZoomMark },
-  { name: "Google Meet", hint: "Book a Google Meet call", href: "/contact?topic=consulting", angle: -18, logo: "googlemeet" },
-  { name: "Phone", hint: `Call us on ${CONTACT.phone}`, href: CONTACT.phoneHref, angle: 198, Mark: PhoneMark },
-  { name: "Slack", hint: "Work with us on Slack", href: "/contact", angle: 126, logo: "slack" },
-  { name: "WhatsApp", hint: "Chat with us on WhatsApp", href: "/contact", angle: 54, logo: "whatsapp" },
+  { name: "Google Meet", hint: "Book a Google Meet call", href: "/contact?topic=consulting", angle: 0, logo: "googlemeet" },
+  { name: "Slack", hint: "Work with us on Slack", href: "/contact", angle: 180, logo: "slack" },
+  { name: "WhatsApp", hint: "Chat with us on WhatsApp", href: "/contact", angle: 90, logo: "whatsapp" },
 ];
 
 function ChannelBadge({ channel, index }: { channel: Channel; index: number }) {

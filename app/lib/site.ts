@@ -23,9 +23,6 @@ export interface NavLink {
 /** Public contact channels, shown in the footer. */
 export const CONTACT = {
   email: "hello@jrati.tech",
-  phone: "+1 (770) 769-5194",
-  /** The phone number in tel: form (digits only, with country code). */
-  phoneHref: "tel:+17707695194",
   linkedin: "https://www.linkedin.com/company/jrati/",
 } as const;
 

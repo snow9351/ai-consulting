@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 
-import { ArrowRight, Briefcase, Chat, Close, Mail, Phone, Shield } from "~/components/ui/icons";
+import { ArrowRight, Briefcase, Chat, Close, Mail, Shield } from "~/components/ui/icons";
 import { CONTACT, SITE } from "~/lib/site";
 import { MARK_SRC } from "./Logo";
 
@@ -145,10 +145,6 @@ export function ContactPrompt() {
           <a href={`mailto:${CONTACT.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-brand-600">
             <Mail className="h-4 w-4 text-brand-600" />
             {CONTACT.email}
-          </a>
-          <a href={CONTACT.phoneHref} className="inline-flex items-center gap-2 transition-colors hover:text-brand-600">
-            <Phone className="h-4 w-4 text-brand-600" />
-            {CONTACT.phone}
           </a>
         </div>
       </div>
