@@ -33,6 +33,7 @@ export const PRIMARY_NAV: NavLink[] = [
   { label: "About Us", to: "/#mission" },
   { label: "Services", to: "/#why" },
   { label: "Features", to: "/#work" },
+  { label: "FAQ", to: "/#faq" },
   { label: "Contact Us", to: "/contact" },
 ];
 
@@ -56,6 +57,7 @@ export const FOOTER_NAV: FooterColumn[] = [
     links: [
       { label: "About Us", to: "/#mission" },
       { label: "Our Values", to: "/#values" },
+      { label: "FAQ", to: "/#faq" },
       { label: "Contact Us", to: "/contact" },
     ],
   },

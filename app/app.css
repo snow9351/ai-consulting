@@ -291,6 +291,52 @@
   .tech-chip:has(+ .tech-chip + .tech-chip.is-hot) {
     translate: 0 -1.5px;
   }
+  /* FAQ laptop (CollabLaptop.tsx): blinking text carets in the editor. */
+  .code-caret {
+    animation: code-caret 1.1s steps(1) infinite;
+  }
+  @keyframes code-caret {
+    50% { opacity: 0; }
+  }
+  /*
+   * FAQ chat bubble: once revealed it pops up out of the laptop, then
+   * its messages arrive one after another.
+   */
+  .reveal-in .chat-pop {
+    animation: chat-pop 800ms cubic-bezier(0.34, 1.4, 0.64, 1) 250ms both;
+  }
+  .reveal-in .chat-bubble {
+    animation: chat-bubble 500ms ease-out 700ms both;
+  }
+  .reveal-in .chat-bubble-2 {
+    animation-delay: 1000ms;
+  }
+  .reveal-in .chat-bubble-3 {
+    animation-delay: 1300ms;
+  }
+  .reveal-in .chat-spread {
+    animation: chat-spread 600ms cubic-bezier(0.34, 1.5, 0.64, 1) both;
+  }
+  @keyframes chat-spread {
+    from { opacity: 0; scale: 0.2 1; }
+    to { opacity: 1; scale: 1 1; }
+  }
+  @keyframes chat-pop {
+    from { opacity: 0; scale: 0.4; translate: -8% 30%; }
+    to { opacity: 1; scale: 1; translate: 0 0; }
+  }
+  @keyframes chat-bubble {
+    from { opacity: 0; translate: 0 8px; }
+    to { opacity: 1; translate: 0 0; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-in .chat-pop,
+    .reveal-in .chat-bubble,
+    .reveal-in .chat-spread,
+    .code-caret {
+      animation: none;
+    }
+  }
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }

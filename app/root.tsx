@@ -15,8 +15,9 @@ import { Button } from "./components/ui/Button";
 import { SITE } from "./lib/site";
 
 export const links: Route.LinksFunction = () => [
-  { rel: "icon", type: "image/png", href: "/favicon-64.png" },
-  { rel: "apple-touch-icon", href: "/images/brand/humnova-mark.png" },
+  { rel: "icon", type: "image/svg+xml", href: "/images/brand/jrati-mark.svg" },
+  { rel: "icon", type: "image/png", sizes: "64x64", href: "/favicon-64.png" },
+  { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
     rel: "preconnect",

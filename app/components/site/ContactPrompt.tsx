@@ -109,7 +109,7 @@ export function ContactPrompt() {
 
       <div className="p-6 pt-5">
         <div className="flex items-center gap-2.5">
-          <img src={MARK_SRC} alt="" width={256} height={256} className="h-8 w-8" />
+          <img src={MARK_SRC} alt="" width={100} height={100} className="h-8 w-8" />
           <p className="text-xs font-bold uppercase tracking-[0.2em] text-brand-600">Contact Us</p>
         </div>
 

@@ -6,8 +6,8 @@ export interface LogoProps {
   className?: string;
 }
 
-/** The mark (people + orbit + star), square, transparent PNG. */
-export const MARK_SRC = "/images/brand/humnova-mark.png";
+/** The JRATI mark: red chevron star on a dark rounded square (SVG). */
+export const MARK_SRC = "/images/brand/jrati-mark.svg";
 
 /**
  * Company logo: the mark plus the company name (SITE.name) set as text —
@@ -24,8 +24,8 @@ export function Logo({ tone = "light", className = "" }: LogoProps) {
       <img
         src={MARK_SRC}
         alt=""
-        width={256}
-        height={256}
+        width={100}
+        height={100}
         className="h-9 w-9 transition-transform duration-500 ease-out group-hover:scale-110 sm:h-11 sm:w-11"
       />
       <span

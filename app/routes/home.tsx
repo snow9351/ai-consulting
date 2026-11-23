@@ -8,6 +8,7 @@ import { WhyChoose } from "~/components/home/WhyChoose";
 import { WorkWithTeam } from "~/components/home/WorkWithTeam";
 import { ForEmployers } from "~/components/home/ForEmployers";
 import { Values } from "~/components/home/Values";
+import { Faq } from "~/components/home/Faq";
 import { FinalCta } from "~/components/home/FinalCta";
 import { SITE } from "~/lib/site";
 
@@ -32,6 +33,7 @@ export default function Home() {
       <WorkWithTeam />
       <ForEmployers />
       <Values />
+      <Faq />
       <FinalCta />
       <ContactPrompt />
     </>
